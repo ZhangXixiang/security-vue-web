@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Article">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="topic_id" jdbcType="INTEGER" property="topicId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="cont" jdbcType="VARCHAR" property="cont" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_origin" jdbcType="INTEGER" property="isOrigin" />
+    <result column="good_count" jdbcType="INTEGER" property="goodCount" />
+    <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+  </resultMap>
+  
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.FollowMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Follow">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="topic_id" jdbcType="INTEGER" property="topicId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+  </resultMap>
+
+  <select id="countForAll" parameterType="com.space.mybatis.model.Answer" resultType="java.lang.Integer" >
+		select count(*) from follow
+	</select>
+
+</mapper>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- layout文件路径-->
+<head th:replace="layout/common :: head"></head>
+<style>
+    .cont p {
+        margin-left: 150px;
+    }
+</style>
+<body class="white-bg" style="background: white;">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-message-add" >
+        <input name="deptId"  type="hidden" id="treeId"/>
+        <div class="form-group">
+            <p class="mar">标题：</p>
+            <div class="col-sm-6">
+                <input class="form-control" type="text" id="title" name="title" placeholder="此处输标题,十五字以内"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="mar">内容：</p>
+            <div class="col-sm-8">
+                <textarea id="content" name="content" type="hidden"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="mar">资讯来源：</p>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" id="infoSource" name="infoSource" />
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="mar">资讯类型：</p>
+            <div class="col-sm-8">
+                <div class="radio-box" >
+                    <input type="radio"  name="informationType" th:value="0" th:checked="true">
+                    <label >专业资讯</label>
+                </div>
+                <div class="radio-box" >
+                    <input type="radio"  name="informationType" th:value="1" >
+                    <label >互金百科</label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<footer th:replace="layout/common :: src"></footer>
+<script type="text/javascript">
+    $(document).ready(function ()
+        //获取资讯公告详情编辑
+
+        var editor1;
+        KindEditor.ready(function (K) {
+            editor1 = K.create('textarea[name="content"]', {
+                cssPath: '/js/kindeditor/plugins/code/prettify.css',
+                uploadJson: '/supervisor/upload/fileUpload',
+                fileManagerJson: '/supervisor/upload/fileManager',
+                allowFileManager: true,
+                items:[
+                    'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                 'insertfile', 'table', 'hr', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink',
+                ],
+                afterBlur: function () {
+                    this.sync();
+                }
+            });
+            prettyPrint();
+        })
+    })
+
+    $("#form-message-add").validate({
+        rules: {
+            title: {
+                required: true,
+                minlength: 2,
+                maxlength: 20
+            },
+            infoSource: {
+                required: true
+            },
+            informationType: {
+                required: true
+            }
+        },
+        messages: {}
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            var content = $("#content").val();
+            if (content.length > 1000 || content.length < 1) {
+                alert("内容为空了");
+                return;
+            }
+            add();
+        }
+    }
+
+    function add() {
+        var title = $("input[name='title']").val();
+        console.log(title);
+        var content = $("#content").val();
+        console.log(content);
+        var infoSource = $("input[name='infoSource']").val();
+        var informationType = $("input[name='informationType']:checked").val();
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "/web/information/doAddInfo",
+            data: {
+                "title": title,
+                "content": content,
+                "infoSource": infoSource,
+                "informationType": informationType
+            },
+            async: false,
+            error: function (request) {
+                $.modal.alertError("系统错误");
+            },
+            success: function (data) {
+                $.operate.successCallback(data);
+            }
+        });
+    }
+</script>
+</body>
+</html>

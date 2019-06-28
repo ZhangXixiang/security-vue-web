@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Comment">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="answer_id" jdbcType="INTEGER" property="answerId" />
+    <result column="answer_title" jdbcType="VARCHAR" property="answerTitle" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <resultMap id="CommentResDtoMap" type="com.space.common.dto.dis.comment.CommentResDto">
+    <result column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="answer_title" jdbcType="VARCHAR" property="answerTitle" />
+    <result column="answer_cont" jdbcType="VARCHAR" property="answerCont" />
+    <result column="answer_id" jdbcType="INTEGER" property="answerId" />
+    <result column="resource_path" jdbcType="VARCHAR" property="resourcePath" />
+    <result column="resource_type" jdbcType="INTEGER" property="resourceType" />
+  </resultMap>
+
+  <select id="getByAnswerId" resultMap="CommentResDtoMap">
+  	SELECT `comment`.id as comment_id, `user`.id as user_id, `user`.name as user_name,
+  	       `user`.head_img, `comment`.content, `comment`.create_time, `comment`.answer_title
+	FROM `comment`
+	LEFT JOIN `user` on `user`.id = `comment`.user_id
+	WHERE `comment`.answer_id = #{answerId}
+	ORDER BY `comment`.create_time DESC
+  </select>
+  
+  <select id="getByUserId" resultMap="CommentResDtoMap">
+	SELECT `comment`.id as comment_id, u.id as user_id, t.`name` as user_name, answer.cont as answer_cont, u.head_img, 
+  	       `comment`.content, `comment`.create_time, `comment`.answer_title, answer.id as answer_id			 
+	FROM `comment`
+	LEFT JOIN answer on `comment`.answer_id = answer.id
+	LEFT JOIN `user` u on u.id = `comment`.user_id
+	LEFT JOIN `user` t on t.id = answer.user_id
+	WHERE u.id = #{userId}
+	ORDER BY `comment`.create_time DESC
+  </select>
+  
+  <select id="obtain" resultMap="CommentResDtoMap">
+	SELECT `comment`.id as comment_id, u.id as user_id, u.`name` as user_name, answer.cont as answer_cont,
+  	    	u.head_img, `comment`.content, `comment`.create_time, `comment`.answer_title, answer.id as answer_id
+	FROM `comment`
+	LEFT JOIN `user` u on u.id = `comment`.user_id
+	LEFT JOIN answer on `comment`.answer_id = answer.id
+	WHERE `comment`.answer_id in (
+		SELECT answer.id
+		from answer 
+		LEFT JOIN `user` on `user`.id = answer.user_id
+		WHERE `user`.id = #{userId}
+	)
+	ORDER BY `comment`.create_time DESC
+  </select>
+
+
+    <select id="listComment" resultType="com.space.common.dto.dis.comment.CommentListResDTO">
+  	SELECT `comment`.id as commentId, `user`.id as userId, `user`.name as userName,`topic`.name as topicName,
+  	        `comment`.content, `comment`.create_time as createTime, `comment`.answer_title as answerTitle,`comment`.u_t as uT,
+  	        `comment`.u_p as uP,`comment`.is_deleted as isDeleted
+	FROM `comment`
+	LEFT JOIN `user` on `user`.id = `comment`.user_id
+	LEFT JOIN `answer` on `comment`.answer_id = `answer`.id
+	LEFT JOIN `topic` on `answer`.topic_id = `topic`.id
+	where `answer`.is_deleted = 0 and `topic`.is_deleted = 0
+	ORDER BY `comment`.create_time DESC
+        limit #{start},#{size}
+    </select>
+
+    <select id="countForAll" parameterType="com.space.mybatis.model.Answer" resultType="java.lang.Integer" >
+		SELECT count(1)
+	FROM `comment`
+	LEFT JOIN `user` on `user`.id = `comment`.user_id
+	LEFT JOIN `answer` on `comment`.answer_id = `answer`.id
+	LEFT JOIN `topic` on `answer`.topic_id = `topic`.id
+	where `answer`.is_deleted = 0 and `topic`.is_deleted = 0
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

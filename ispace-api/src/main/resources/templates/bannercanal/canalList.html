@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- layout文件路径-->
+<head th:replace="layout/common :: head"></head>
+<style>
+    .fina h4 {
+        padding-left: 30px;
+        float: left;
+    }
+
+    .dig2 h4 {
+        padding-left: 30px;
+        float: left;
+    }
+
+    .fina2 h4 {
+        padding-left: 30px;
+        float: left;
+    }
+
+    .dig p {
+        margin-top: 12px;
+    }
+
+    .dig2 p {
+        margin-top: 12px;
+    }
+
+    .fina p {
+        margin-top: 12px;
+    }
+
+    .fina2 p {
+        margin-top: 12px;
+    }
+    #nav span {
+        display: inline-block;
+        width: 100px;
+        text-align: center;
+        line-height: 35px;
+        height: 35px;
+
+    }
+</style>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col" th:replace="layout/common :: left"></div>
+            <div class="top_nav" th:replace="layout/common :: top"></div>
+            <div class="right_col" role="main" style="background: white;">
+                <div class="row">
+                    <div class="col-md-12"><h3>轮播管理列表</h3></div>
+                </div>
+                <div class="col-sm-12 search-collapse">
+                    <form id="user-form">
+                        <div class="select-list">
+                            <ul>
+                                <li>
+                                    标题：<input type="text" name="name"/>
+                                </li>
+                                <li>
+                                    <select class="form-control" name="type">
+                                        <option value="">资讯类型</option>
+                                        <option value="1">app顶部banner</option>
+                                        <option value="2">app重点推荐banner</option>
+                                        <option value="3">app首页渠道</option>
+                                        <!--<option  th:each="list:${channles}" th:value="${list.code}" th:text="${list.name }"></option>-->
+                                    </select>
+
+                                </li>
+                                <!--<li class="select-time">
+                                    <label>创建时间： </label>
+                                    <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+                                    <span>-</span>
+                                    <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+                                </li>-->
+                                <li>
+                                    <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+                    <a class="btn btn-success" onclick="$.operate.add()">
+                        <i class="fa fa-plus"></i> 新增
+                    </a>
+
+                </div>
+                <div class="col-12 select-table table-striped">
+                    <table id="bootstrap-table" data-mobile-responsive="true"></table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer th:replace="layout/common :: src"></footer>
+<script type="text/javascript">
+    $(function() {
+       // $('body').layout({ west__size: 185 });
+        queryInfoList();
+    });
+
+    function queryInfoList() {
+        var options = {
+            url: "/web/canalList",
+            createUrl: "/web/addBannerPic",
+            detailUrl: "/web/detailInformation/{id}",
+            updateUrl: "/web/editInformation/{id}",
+           // sortName: "createTime",
+            //sortOrder: "desc",
+            modalName: "资讯",
+            search: false,
+            showExport: false,
+            columns: [{
+                checkbox: false
+            },
+                {
+                    field: 'name',
+                    title: '名称'
+                },
+                {
+                    field: 'sort',
+                    title: '排序'
+                },
+                {
+                    field: 'keyclum',
+                    title: '关键字',
+                    sortable: true
+                },
+                {
+                    field: 'picurl',
+                    title: '图片路径'/*,
+                    formatter: function(value) {
+                        var value = new Date(value);
+                        var currtime = value.Format("yyyy-MM-dd");
+                        return currtime;
+                    }*/
+                },
+                {
+                    field: 'link',
+                    title: '连接'
+                },
+                {
+                    field: 'type',
+                    title: '类型',
+                    formatter: typeFormat
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: operatorFormat
+                }
+            ]
+        };
+        $.table.init(options);
+    }
+
+    function operatorFormat(value, row, index) {
+        var operatorStr = '<input type="button" class="btn btn-xs btn-primary" onclick="$.operate.detail(\'' + row.contId + '\')"  value="查看"/>';
+         operatorStr += '<input type="button" class="btn btn-xs btn-warning" onclick="$.operate.edit(\'' + row.contId + '\')"  value="编辑"/>';
+         return operatorStr;
+    }
+
+    function typeFormat(value, row, index) {
+        if(value == "1"){
+            return "顶部banner";
+        }else if (value == "2"){
+            return "重点推荐banner";
+        }else if (value == "3"){
+            return "首页排版渠道";
+        }
+        return "";
+    }
+
+
+</script>
+</body>
+</html>

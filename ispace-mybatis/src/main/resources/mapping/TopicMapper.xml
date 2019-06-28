@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.TopicMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Topic">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="u_t" jdbcType="TIMESTAMP" property="uT" />
+    <result column="u_p" jdbcType="VARCHAR" property="uP" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+  </resultMap>
+  
+  <resultMap id="TopicResDtoMap" type="com.space.common.dto.dis.topic.TopicResDto">
+    <result column="topic_id" jdbcType="INTEGER" property="topicId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
+    <result column="is_follow" jdbcType="INTEGER" property="isFollow" />
+  </resultMap>
+  
+  <select id="getById" resultMap="TopicResDtoMap">
+	SELECT topic.id as topic_id, topic.`name`, content, icon, comment_count, collect_count
+	FROM topic
+	WHERE is_deleted = 0 
+	<if test="topicId != null">
+		AND topic.id = #{topicId}
+	</if>
+	ORDER BY sort ASC
+  </select>
+  
+  <select id = "isFollow" resultType="int">
+  	SELECT follow.id as is_follow
+	FROM topic
+	LEFT JOIN follow on topic.id = follow.topic_id
+	LEFT JOIN `user` u on u.id = follow.user_id
+	WHERE is_deleted = 0 AND u.id = #{userId} AND topic.id = #{topicId}
+  </select>
+  
+  <select id="myFollow" resultMap="TopicResDtoMap">
+  	SELECT topic.icon, topic.`name`, topic.collect_count, topic.id as topic_id
+	FROM topic
+	LEFT JOIN follow on topic.id = follow.topic_id
+	LEFT JOIN `user` on `user`.id = follow.user_id
+	WHERE `user`.id = #{userId}
+  </select>
+
+  <select id="selectAllFollow" resultType="com.space.common.dto.dis.follow.FollowResDTO">
+  	SELECT topic.name as topicName, follow.user_id as userId
+	FROM topic
+	LEFT JOIN follow on topic.id = follow.topic_id
+  	where follow.user_id != ''
+	order by topic.id
+	limit #{start},#{size}
+  </select>
+
+
+    <select id="listTopic" resultMap="BaseResultMap">
+        SELECT * from topic
+        limit #{start},#{size}
+    </select>
+
+
+    <select id="countForAll" parameterType="com.space.mybatis.model.Answer" resultType="java.lang.Integer" >
+		select count(*) from topic
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

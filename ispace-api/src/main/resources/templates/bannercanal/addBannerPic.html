@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- layout文件路径-->
+<head th:replace="layout/common :: head"></head>
+<body class="white-bg" style="background: white;">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-message-add" >
+       <!-- <input name="deptId"  type="hidden" id="treeId"/>-->
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">栏目：</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="type" name="type">
+                   <!-- <option  th:each="list:${channles}" th:value="${list.code}" th:text="${list.name }"></option>-->
+                    <option value="1">app顶部banner</option>
+                    <option value="2">app重点推荐banner</option>
+                    <option value="3">app首页渠道</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">标题：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="name" name="name"  placeholder="此处输标题,150字以内"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label "> 关键字：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="keyclum"  name="keyclum" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">图片：</label>
+            <div class="col-sm-8">
+                <img  class="backupimg" height="100" width="200" id="image" name="image" alt="" title="" style="display: block;"/>
+                <input type="hidden" id="picurl" name="picurl" value="" />
+                <input type="file" class="form-control" name="imgFile" accept=".jpg,.jpeg,.png,.gif" id="imgFile"  onchange="uploadImg()" />
+               <!-- &lt;!&ndash;<input class="form-control" id="titleImg" name="titleImg" />&ndash;&gt;-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">外部链接url：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="link" name="link" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">排序：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="sort"  name="sort" />
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<footer th:replace="layout/common :: src"></footer>
+<script type="text/javascript">
+
+    $("#form-message-add").validate({
+        rules: {
+            name: {
+                required: false,
+                minlength: 2,
+                maxlength: 150
+            },
+            picurl: {
+                required: false,
+                minlength: 2,
+                maxlength: 150
+            },
+            type: {
+                required: true
+            }
+        },
+        messages: {}
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            add();
+        }
+    }
+
+    function add() {
+        console.log("====add===");
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "/web/doAddBannerPic",
+            data:$("#form-message-add").serialize(),
+            /*data: {
+                "title": title,
+                "content": content
+            },*/
+            async: false,
+            error: function (request) {
+                $.modal.alertError("系统错误");
+            },
+            success: function (data) {
+                $.operate.successCallback(data);
+            }
+        });
+    }
+
+    //上传单张图片
+    function uploadImg(){
+        var fileId = "imgFile";
+        var file = $("#" + fileId).val();
+        var pos = file.lastIndexOf("\\");
+        var fileName = file.substring(pos + 1);
+        $.ajaxFileUpload({
+          //  url : "/supervisor/upload/ajaxupfile",
+            url : "/supervisor/upload/ajaxuplode",
+            secureuri : false,
+            fileElementId : fileId,
+            data:{
+                "fileName":fileName
+            },
+            type:"post",
+            dataType : "json",
+            /*success : function(result) {
+                console.log(result);
+                $("#image").attr("src", result.filePath);
+                   // $("#imageUrl").val(result.realPath);
+                $("#picurl").val(result.filePath);
+
+            },*/
+            success: function (data, status)  //服务器成功响应处理函数
+            {
+                if(data>0){
+                    alert("上传成功");
+                    $("#image").attr("src", data.filePath);
+                    // $("#imageUrl").val(result.realPath);
+                    $("#picurl").val(data.filePath);
+                  //  console.log(data.filePath);//可以进行文件的回显操作（在这里就不做说明）
+                }else{
+                    alert("上传失败");
+
+                }
+            },
+            error:function () {
+                alert(22);
+        }
+        })
+    }
+</script>
+</body>
+</html>

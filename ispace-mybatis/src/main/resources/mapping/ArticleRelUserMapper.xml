@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.ArticleRelUserMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.ArticleRelUser">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="commenter_id" jdbcType="VARCHAR" property="commenterId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+</mapper>

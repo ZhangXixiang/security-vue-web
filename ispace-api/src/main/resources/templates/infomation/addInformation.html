@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- layout文件路径-->
+<head th:replace="layout/common :: head"></head>
+<body class="white-bg" style="background: white;">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-message-add" >
+       <!-- <input name="deptId"  type="hidden" id="treeId"/>-->
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">栏目：</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="channelCode" name="channelCode">
+                    <option  th:each="list:${channles}" th:value="${list.code}" th:text="${list.name }"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">标题：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="title" name="title"  placeholder="此处输标题,150字以内"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">副标题：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="ext1" name="ext1" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">副标题Tag标签(关键字)：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="tagStr"  name="tagStr" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">外部链接url：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="link" name="link" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">摘要：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="remark"  name="remark" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">来源：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="origin"  name="origin" value="天金所"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">url：</label>
+            <div class="col-sm-8">
+                <input class="form-control" id="originUrl"  name="originUrl" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">作者：</label>
+            <div class="col-sm-8">
+                <input class="form-control"  id="author" name="author" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">标题图：</label>
+            <div class="col-sm-8">
+                <img  class="backupimg" height="100" width="200" id="image" name="image" alt="" title="" style="display: block;"/>
+                <input type="hidden" id="imageUrl" name="image_url" value="" />
+                <input type="file" class="form-control" name="imgFile" accept=".jpg,.jpeg,.png,.gif" id="imgFile"  onchange="uploadImg()" />
+                <!--<input class="form-control" id="titleImg" name="titleImg" />-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">发布时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control time-input"   name="releaseDate" id="releaseDate"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">固顶级别：</label>
+            <div class="col-sm-8">
+                <select class="form-control" type="text"  id="topLevel" name="topLevel" >
+                    <option value="0">不固顶</option>
+                    <option value="1">固顶1</option>
+                    <option value="2">固顶2</option>
+                    <option value="3">固顶3</option>
+                    <option value="4">固顶4</option>
+                    <option value="5">固顶5</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">排序时间：</label>
+            <div class="col-sm-8">
+                <input class="form-control time-input"  id="sortDate" name="sortDate" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">内容：</label>
+            <div class="col-sm-8">
+                <textarea  id="content" name="content" type="hidden"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
+<footer th:replace="layout/common :: src"></footer>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var editor1;
+        KindEditor.ready(function (K) {
+            editor1 = K.create('textarea[name="content"]', {
+                cssPath: '/js/kindeditor/plugins/code/prettify.css',
+                uploadJson: '/supervisor/upload/fileUpload',
+                fileManagerJson: '/supervisor/upload/fileManager',
+                allowFileManager: true,
+                items:[
+                    'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', '|', 'fullscreen', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                 'insertfile', 'table', 'hr', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink',
+                ],
+                afterBlur: function () {
+                    this.sync();
+                }
+            });
+            prettyPrint();
+        })
+    })
+
+    $("#form-message-add").validate({
+        rules: {
+            title: {
+                required: true,
+                minlength: 2,
+                maxlength: 150
+            },
+            content: {
+                required: true
+            }
+        },
+        messages: {}
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            add();
+        }
+    }
+
+    function add() {
+        console.log("====add===");
+        var title = $("input[name='title']").val();
+        console.log(title);
+        var content = $("#content").val();
+        console.log(content);
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: "/web/doAddInformation",
+            data:$("#form-message-add").serialize(),
+            /*data: {
+                "title": title,
+                "content": content
+            },*/
+            async: false,
+            error: function (request) {
+                $.modal.alertError("系统错误");
+            },
+            success: function (data) {
+                $.operate.successCallback(data);
+            }
+        });
+    }
+
+    //上传单张图片
+    function uploadImg(){
+        var fileId = "imgFile";
+        var file = $("#" + fileId).val();
+        var pos = file.lastIndexOf("\\");
+        var fileName = file.substring(pos + 1);
+        $.ajaxFileUpload({
+            url : "/supervisor/upload/ajaxupfile",
+            secureuri : false,
+            fileElementId : fileId,
+            data:{
+                "fileName":fileName
+            },
+            dataType : 'json',
+            success : function(result) {
+                if(result.code == "1"){
+                    $("#image").attr("src", result.filePath);
+                    $("#imageUrl").val(result.realPath);
+                } else {
+                    alert(result.msg);
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

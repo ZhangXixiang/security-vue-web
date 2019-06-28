@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/common :: head"></head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col" th:replace="layout/common :: left"></div>
+        <div class="top_nav" th:replace="layout/common :: top"></div>
+        <div class="right_col" role="main" style="background: white;">
+            <h1>四大空间后台管理</h1>
+
+            <!--<form id="enter" action="/qr/open" method="post" class="form-horizontal form-label-left">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">票编号</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <input name="qrid1" id="qrid1" type="text" class="form-control" placeholder="请输入有效的票编号"required>
+                        <span style="color: red" id="warning"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit"   class="btn btn-primary">提交</button>
+                    </div>
+                </div>
+            </form>-->
+           <!-- <img src="/starspace/restapi/index/qrcode?content=18910698466"/>-->
+            <img src="/starspace/restapi/index/generateWithLogo?content=1111" />
+
+
+            <h2>该二维码支持中文和LOGO</h2>
+            <div id="qrcodeCanvas"></div>
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/common :: src"></footer>
+
+</body>
+<script>
+    var src1 = "https://wuyongshuai.oss-cn-qingdao.aliyuncs.com/573ed283334cb6607850942099456572.jpg";
+    console.log(src1);
+    $(document).ready(function() {
+        $("#qrcodeCanvas").qrcode({
+            render : "canvas",    //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
+            text : "这是修改了官文的js文件，此时生成的二维码支持中文和LOGO",    //扫描了二维码后的内容显示,在这里也可以直接填一个网址，扫描二维码后
+            width : "200",               //二维码的宽度
+            height : "200",              //二维码的高度
+            background : "#ffffff",       //二维码的后景色
+            foreground : "#000000",        //二维码的前景色
+            src: src1            //二维码中间的图片
+            //src: 'photo.jpg'             //二维码中间的图片
+        });
+    });
+</script>
+</html>

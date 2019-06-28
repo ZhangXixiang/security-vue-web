@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.space.mybatis.dao.Cms2BaseDictMapper" >
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Cms2BaseDict" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SITE_ID" property="siteId" jdbcType="BIGINT" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="GMT_MODIFY" property="gmtModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.space.mybatis.model.Cms2BaseDict" extends="BaseResultMap" >
+    <result column="VALUE" property="value" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SITE_ID, CODE, GMT_CREATE, GMT_MODIFY, VALUE
+  </sql>
+  <sql id="Blob_Column_List" >
+    VALUE
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.space.mybatis.model.Cms2BaseDictExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms2_base_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.space.mybatis.model.Cms2BaseDictExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cms2_base_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.space.mybatis.model.Cms2BaseDictExample" >
+    delete from cms2_base_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.space.mybatis.model.Cms2BaseDict" >
+    insert into cms2_base_dict (ID, SITE_ID, CODE, 
+      GMT_CREATE, GMT_MODIFY, VALUE
+      )
+    values (#{id,jdbcType=BIGINT}, #{siteId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, #{value,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.space.mybatis.model.Cms2BaseDict" >
+    insert into cms2_base_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="gmtCreate != null" >
+        GMT_CREATE,
+      </if>
+      <if test="gmtModify != null" >
+        GMT_MODIFY,
+      </if>
+      <if test="value != null" >
+        VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.space.mybatis.model.Cms2BaseDictExample" resultType="java.lang.Integer" >
+    select count(*) from cms2_base_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cms2_base_dict
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null" >
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null" >
+        GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModify != null" >
+        GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.value != null" >
+        VALUE = #{record.value,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cms2_base_dict
+    set ID = #{record.id,jdbcType=BIGINT},
+      SITE_ID = #{record.siteId,jdbcType=BIGINT},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP},
+      VALUE = #{record.value,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cms2_base_dict
+    set ID = #{record.id,jdbcType=BIGINT},
+      SITE_ID = #{record.siteId,jdbcType=BIGINT},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <select id="selectByContId" parameterType="String" resultType="Map">
+    SELECT
+       ext.title as title,
+       clob.obj_value as content,
+       DATE_FORMAT(ext.RELEASE_DATE,'%Y-%m-%d') as releaseDate,
+       count.VIEWS+2000 as viewCount,
+       channel.channel_name as channelName,
+       channel.code as channelCode,
+       ext.CONT_ID as contId
+    FROM
+      cms2_cont_ext ext
+    INNER JOIN cms2_cont cont on ext.CONT_ID = cont.ID
+    INNER JOIN cms2_channel channel on channel.id = cont.CHANNEL_ID
+    INNER JOIN cms2_obj_clob clob on clob.OBJ_ID = ext.CONT_ID
+    INNER JOIN cms2_cont_count count on count.CONT_ID = ext.CONT_ID
+    WHERE ext.CONT_ID = #{contId} and clob.OBJ_TYPE = '2' Limit 1
+  </select>
+
+  <select id="getInfoByContId" parameterType="String" resultType="Map">
+    SELECT
+    ext.title as title,
+    clob.obj_value as content,
+    DATE_FORMAT(ext.RELEASE_DATE,'%Y-%m-%d') as releaseDate,
+    count.VIEWS as viewCount
+    FROM
+    cms2_cont_ext ext
+    INNER JOIN cms2_cont cont on ext.CONT_ID = cont.ID
+    INNER JOIN cms2_channel channel on channel.id = cont.CHANNEL_ID
+    INNER JOIN cms2_obj_clob clob on clob.OBJ_ID = ext.CONT_ID
+    INNER JOIN cms2_cont_count count on count.CONT_ID = ext.CONT_ID
+    WHERE ext.CONT_ID = #{contId} Limit 1
+  </select>
+
+  <select id="getNoticeLinkByContId" resultType="string" parameterType="string">
+     SELECT
+       ext.link as link
+    FROM
+      cms2_cont_ext ext
+    WHERE ext.CONT_ID = #{contId}  Limit 1
+  </select>
+</mapper>

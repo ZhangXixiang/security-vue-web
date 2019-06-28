@@ -1,0 +1,133 @@
+
+<!--页头-->
+<head th:fragment="head">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--kingEditor-->
+    <link th:href="@{/js/kindeditor/themes/default/default.css}" rel="stylesheet"/>
+    <link th:href="@{/js/kindeditor/plugins/code/prettify.css}" rel="stylesheet"/>
+    <!-- Bootstrap -->
+    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+    <!-- 分页 插件 -->
+    <link th:href="@{/vendors/bs_pagination/jquery.bs_pagination.min.css}" rel="stylesheet">
+    <!--日历插件-->
+    <link th:href="@{/vendors/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css}" rel="stylesheet" />
+    <!-- bootstrap-table 表格插件样式 -->
+    <link th:href="@{/js/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
+    <link th:href="@{/ruoyi/css/ry-ui.css}" rel="stylesheet"/>
+</head>
+
+<!--侧边菜单和顶部div-->
+<div class="col-md-3 left_col" th:fragment="left">
+    <div class="left_col scroll-view">
+        <div class="clearfix"></div>
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+           <!-- <div class="profile_pic">
+                <img th:src="@{/images/main.jpg}" id="mainimg" class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span>Welcome</span>
+                <h2>管理员</h2>
+            </div>-->
+            <a href="form.html" th:href="@{/web/index}"><h4 id="creat">四大空间服务</h4></a>
+        </div>
+        <!-- /menu profile quick info -->
+        <br/>
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <h3></h3>
+                <ul class="nav side-menu">
+                    <li><a th:href="@{/web/index}"><i class="glyphicon glyphicon-user"></i> 首页</a></li>
+                    <li><a><i class="fa fa-edit"></i>资讯管理<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                           <!-- <li><a th:href="@{/web/informations}">资讯发布</a></li>
+                            <li><a th:href="@{/web/banners}">轮播图</a></li>-->
+                            <li><a th:href="@{/web/bannerPic}">轮播管理</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /sidebar menu -->
+    </div>
+</div>
+<div class="top_nav" th:fragment="top">
+    <div class="nav_menu">
+        <nav>
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li class="">
+                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <img th:src="@{/images/main.jpg}" alt="">管理员
+                        <span class=" fa fa-angle-down"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                        <li><a th:href="@{/login/logout}"><i class="fa fa-sign-out pull-right"></i>退出</a></li>
+                    </ul>
+                </li>-->
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!--公共的js文件-->
+<footer th:fragment="src">
+    <!-- jQuery -->
+    <!---->
+    <script type="text/javascript"  th:src="@{/vendors/jquery/dist/jquery.min.js}" ></script>
+    <!--<script type="text/javascript" th:src="@{/js/ajaxfileupload/jquery.js}"></script>-->
+    <!-- Bootstrap -->
+    <script type="text/javascript" th:src="@{/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
+
+    <!-- bootstrap-progressbar -->
+    <script type="text/javascript"  th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+    <script type="text/javascript"  th:src="@{/build/js/custom.min.js}"></script>
+
+    <!--日历插件-->
+    <script th:src="@{/vendors/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js}"></script>
+    <script th:src="@{/vendors/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js}"></script>
+    <!--富文本-->
+    <script charset="utf-8" th:src="@{/js/kindeditor/kindeditor-all.js}"></script>
+    <script charset="utf-8" th:src="@{/js/kindeditor/lang/zh-CN.js}"></script>
+    <script charset="utf-8" th:src="@{/js/kindeditor/plugins/code/prettify.js}"></script>
+    <!-- bootstrap-table 表格插件 -->
+    <script th:src="@{/js/bootstrap-table/bootstrap-table.min.js}"></script>
+    <script th:src="@{/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+    <script th:src="@{/js/bootstrap-table/extensions/mobile/bootstrap-table-mobile.min.js}"></script>
+    <script th:src="@{/js/bootstrap-table/extensions/toolbar/bootstrap-table-toolbar.min.js}"></script>
+    <!-- jquery-validate 表单验证插件 -->
+    <script th:src="@{/js/validate/jquery.validate.min.js}"></script>
+    <script th:src="@{/js/validate/messages_zh.min.js}"></script>
+    <script th:src="@{/js/validate/jquery.validate.extend.js}"></script>
+
+    <script th:src="@{/js/blockUI/jquery.blockUI.js}"></script>
+    <script th:src="@{/js/iCheck/icheck.min.js}"></script>
+    <script th:src="@{/js/layer/layer.min.js}"></script>
+    <script th:src="@{/js/layui/layui.js}"></script>
+    <script th:src="@{/ruoyi/js/common.js?v=3.1.0}"></script>
+    <script th:src="@{/ruoyi/js/ry-ui.js?v=3.1.0}"></script>
+
+    <script th:src="@{/ruoyi/ajaxfileupload/ajaxfileupload.js}"></script>
+
+    <script th:src="@{/js/qrcode.min.js}"></script>
+    <script th:src="@{/js/utf.js}"></script>
+    <script th:src="@{/js/jquery.qrcode.js}"></script>
+</footer>
+
+<script>
+
+
+</script>

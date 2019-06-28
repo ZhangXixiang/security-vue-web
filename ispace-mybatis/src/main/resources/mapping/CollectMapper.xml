@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.CollectMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Collect">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="answer_id" jdbcType="INTEGER" property="answerId" />
+    <result column="answer_title" jdbcType="VARCHAR" property="answerTitle" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <resultMap id="CollectResDtoMap" type="com.space.common.dto.dis.collect.CollectResDto">
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="answer_title" jdbcType="VARCHAR" property="answerTitle" />
+    <result column="collect_type" jdbcType="INTEGER" property="type" />
+    <result column="cont" jdbcType="VARCHAR" property="cont" />
+    <result column="answer_id" jdbcType="INTEGER" property="answerId" />
+    <result column="resource_type" jdbcType="INTEGER" property="resourceType" />
+    <result column="resource_path" jdbcType="VARCHAR" property="resourcePath" />
+  </resultMap>
+  
+  <select id="getByUserId" resultMap="CollectResDtoMap">	
+	SELECT `user`.`name` as user_name, `user`.head_img, `user`.id as user_id, answer.create_time,
+           collect.answer_title, collect.type, answer.cont, answer.id as answer_id
+	FROM collect
+	LEFT JOIN answer on collect.answer_id = answer.id 
+	LEFT JOIN `user` on collect.user_id = `user`.id
+	WHERE answer.user_id = #{userId}
+	ORDER BY collect.create_time DESC
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.space.mybatis.dao.Cms2ChannelExtMapper" >
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Cms2ChannelExt" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="BIGINT" />
+    <result column="FINAL_STEP" property="finalStep" jdbcType="BIGINT" />
+    <result column="AFTER_CHECK" property="afterCheck" jdbcType="BIGINT" />
+    <result column="TITLE_IMG_WIDTH" property="titleImgWidth" jdbcType="BIGINT" />
+    <result column="TITLE_IMG_HEIGHT" property="titleImgHeight" jdbcType="BIGINT" />
+    <result column="CONT_IMG_WIDTH" property="contImgWidth" jdbcType="BIGINT" />
+    <result column="CONT_IMG_HEIGHT" property="contImgHeight" jdbcType="BIGINT" />
+    <result column="IS_STATIC_CHNL" property="isStaticChnl" jdbcType="BIGINT" />
+    <result column="IS_STATIC_CONT" property="isStaticCont" jdbcType="BIGINT" />
+    <result column="IS_ACCESS_BY_DIR" property="isAccessByDir" jdbcType="BIGINT" />
+    <result column="IS_LIST_CHILD" property="isListChild" jdbcType="BIGINT" />
+    <result column="PAGE_SIZE" property="pageSize" jdbcType="BIGINT" />
+    <result column="TPL_CHNL_ID" property="tplChnlId" jdbcType="BIGINT" />
+    <result column="TPL_CONT_ID" property="tplContId" jdbcType="BIGINT" />
+    <result column="HAS_TITLE_IMG" property="hasTitleImg" jdbcType="BIGINT" />
+    <result column="HAS_CONT_IMG" property="hasContImg" jdbcType="BIGINT" />
+    <result column="COMMENT_CONTROL" property="commentControl" jdbcType="BIGINT" />
+    <result column="ALLOW_UPDOWN" property="allowUpdown" jdbcType="BIGINT" />
+    <result column="IS_BLANK" property="isBlank" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.space.mybatis.model.Cms2ChannelExtWithBLOBs" extends="BaseResultMap" >
+    <result column="LINK" property="link" jdbcType="LONGVARCHAR" />
+    <result column="TITLE" property="title" jdbcType="LONGVARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="LONGVARCHAR" />
+    <result column="KEYWORDS" property="keywords" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CHANNEL_ID, FINAL_STEP, AFTER_CHECK, TITLE_IMG_WIDTH, TITLE_IMG_HEIGHT, CONT_IMG_WIDTH, 
+    CONT_IMG_HEIGHT, IS_STATIC_CHNL, IS_STATIC_CONT, IS_ACCESS_BY_DIR, IS_LIST_CHILD, 
+    PAGE_SIZE, TPL_CHNL_ID, TPL_CONT_ID, HAS_TITLE_IMG, HAS_CONT_IMG, COMMENT_CONTROL, 
+    ALLOW_UPDOWN, IS_BLANK
+  </sql>
+  <sql id="Blob_Column_List" >
+    LINK, TITLE, REMARK, KEYWORDS
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.space.mybatis.model.Cms2ChannelExtExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms2_channel_ext
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.space.mybatis.model.Cms2ChannelExtExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cms2_channel_ext
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.space.mybatis.model.Cms2ChannelExtExample" >
+    delete from cms2_channel_ext
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.space.mybatis.model.Cms2ChannelExtWithBLOBs" >
+    insert into cms2_channel_ext (ID, CHANNEL_ID, FINAL_STEP, 
+      AFTER_CHECK, TITLE_IMG_WIDTH, TITLE_IMG_HEIGHT, 
+      CONT_IMG_WIDTH, CONT_IMG_HEIGHT, IS_STATIC_CHNL, 
+      IS_STATIC_CONT, IS_ACCESS_BY_DIR, IS_LIST_CHILD, 
+      PAGE_SIZE, TPL_CHNL_ID, TPL_CONT_ID, 
+      HAS_TITLE_IMG, HAS_CONT_IMG, COMMENT_CONTROL, 
+      ALLOW_UPDOWN, IS_BLANK, LINK, 
+      TITLE, REMARK, KEYWORDS
+      )
+    values (#{id,jdbcType=BIGINT}, #{channelId,jdbcType=BIGINT}, #{finalStep,jdbcType=BIGINT}, 
+      #{afterCheck,jdbcType=BIGINT}, #{titleImgWidth,jdbcType=BIGINT}, #{titleImgHeight,jdbcType=BIGINT}, 
+      #{contImgWidth,jdbcType=BIGINT}, #{contImgHeight,jdbcType=BIGINT}, #{isStaticChnl,jdbcType=BIGINT}, 
+      #{isStaticCont,jdbcType=BIGINT}, #{isAccessByDir,jdbcType=BIGINT}, #{isListChild,jdbcType=BIGINT}, 
+      #{pageSize,jdbcType=BIGINT}, #{tplChnlId,jdbcType=BIGINT}, #{tplContId,jdbcType=BIGINT}, 
+      #{hasTitleImg,jdbcType=BIGINT}, #{hasContImg,jdbcType=BIGINT}, #{commentControl,jdbcType=BIGINT}, 
+      #{allowUpdown,jdbcType=BIGINT}, #{isBlank,jdbcType=BIGINT}, #{link,jdbcType=LONGVARCHAR}, 
+      #{title,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}, #{keywords,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.space.mybatis.model.Cms2ChannelExtWithBLOBs" >
+    insert into cms2_channel_ext
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID,
+      </if>
+      <if test="finalStep != null" >
+        FINAL_STEP,
+      </if>
+      <if test="afterCheck != null" >
+        AFTER_CHECK,
+      </if>
+      <if test="titleImgWidth != null" >
+        TITLE_IMG_WIDTH,
+      </if>
+      <if test="titleImgHeight != null" >
+        TITLE_IMG_HEIGHT,
+      </if>
+      <if test="contImgWidth != null" >
+        CONT_IMG_WIDTH,
+      </if>
+      <if test="contImgHeight != null" >
+        CONT_IMG_HEIGHT,
+      </if>
+      <if test="isStaticChnl != null" >
+        IS_STATIC_CHNL,
+      </if>
+      <if test="isStaticCont != null" >
+        IS_STATIC_CONT,
+      </if>
+      <if test="isAccessByDir != null" >
+        IS_ACCESS_BY_DIR,
+      </if>
+      <if test="isListChild != null" >
+        IS_LIST_CHILD,
+      </if>
+      <if test="pageSize != null" >
+        PAGE_SIZE,
+      </if>
+      <if test="tplChnlId != null" >
+        TPL_CHNL_ID,
+      </if>
+      <if test="tplContId != null" >
+        TPL_CONT_ID,
+      </if>
+      <if test="hasTitleImg != null" >
+        HAS_TITLE_IMG,
+      </if>
+      <if test="hasContImg != null" >
+        HAS_CONT_IMG,
+      </if>
+      <if test="commentControl != null" >
+        COMMENT_CONTROL,
+      </if>
+      <if test="allowUpdown != null" >
+        ALLOW_UPDOWN,
+      </if>
+      <if test="isBlank != null" >
+        IS_BLANK,
+      </if>
+      <if test="link != null" >
+        LINK,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="keywords != null" >
+        KEYWORDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=BIGINT},
+      </if>
+      <if test="finalStep != null" >
+        #{finalStep,jdbcType=BIGINT},
+      </if>
+      <if test="afterCheck != null" >
+        #{afterCheck,jdbcType=BIGINT},
+      </if>
+      <if test="titleImgWidth != null" >
+        #{titleImgWidth,jdbcType=BIGINT},
+      </if>
+      <if test="titleImgHeight != null" >
+        #{titleImgHeight,jdbcType=BIGINT},
+      </if>
+      <if test="contImgWidth != null" >
+        #{contImgWidth,jdbcType=BIGINT},
+      </if>
+      <if test="contImgHeight != null" >
+        #{contImgHeight,jdbcType=BIGINT},
+      </if>
+      <if test="isStaticChnl != null" >
+        #{isStaticChnl,jdbcType=BIGINT},
+      </if>
+      <if test="isStaticCont != null" >
+        #{isStaticCont,jdbcType=BIGINT},
+      </if>
+      <if test="isAccessByDir != null" >
+        #{isAccessByDir,jdbcType=BIGINT},
+      </if>
+      <if test="isListChild != null" >
+        #{isListChild,jdbcType=BIGINT},
+      </if>
+      <if test="pageSize != null" >
+        #{pageSize,jdbcType=BIGINT},
+      </if>
+      <if test="tplChnlId != null" >
+        #{tplChnlId,jdbcType=BIGINT},
+      </if>
+      <if test="tplContId != null" >
+        #{tplContId,jdbcType=BIGINT},
+      </if>
+      <if test="hasTitleImg != null" >
+        #{hasTitleImg,jdbcType=BIGINT},
+      </if>
+      <if test="hasContImg != null" >
+        #{hasContImg,jdbcType=BIGINT},
+      </if>
+      <if test="commentControl != null" >
+        #{commentControl,jdbcType=BIGINT},
+      </if>
+      <if test="allowUpdown != null" >
+        #{allowUpdown,jdbcType=BIGINT},
+      </if>
+      <if test="isBlank != null" >
+        #{isBlank,jdbcType=BIGINT},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.space.mybatis.model.Cms2ChannelExtExample" resultType="java.lang.Integer" >
+    select count(*) from cms2_channel_ext
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cms2_channel_ext
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.channelId != null" >
+        CHANNEL_ID = #{record.channelId,jdbcType=BIGINT},
+      </if>
+      <if test="record.finalStep != null" >
+        FINAL_STEP = #{record.finalStep,jdbcType=BIGINT},
+      </if>
+      <if test="record.afterCheck != null" >
+        AFTER_CHECK = #{record.afterCheck,jdbcType=BIGINT},
+      </if>
+      <if test="record.titleImgWidth != null" >
+        TITLE_IMG_WIDTH = #{record.titleImgWidth,jdbcType=BIGINT},
+      </if>
+      <if test="record.titleImgHeight != null" >
+        TITLE_IMG_HEIGHT = #{record.titleImgHeight,jdbcType=BIGINT},
+      </if>
+      <if test="record.contImgWidth != null" >
+        CONT_IMG_WIDTH = #{record.contImgWidth,jdbcType=BIGINT},
+      </if>
+      <if test="record.contImgHeight != null" >
+        CONT_IMG_HEIGHT = #{record.contImgHeight,jdbcType=BIGINT},
+      </if>
+      <if test="record.isStaticChnl != null" >
+        IS_STATIC_CHNL = #{record.isStaticChnl,jdbcType=BIGINT},
+      </if>
+      <if test="record.isStaticCont != null" >
+        IS_STATIC_CONT = #{record.isStaticCont,jdbcType=BIGINT},
+      </if>
+      <if test="record.isAccessByDir != null" >
+        IS_ACCESS_BY_DIR = #{record.isAccessByDir,jdbcType=BIGINT},
+      </if>
+      <if test="record.isListChild != null" >
+        IS_LIST_CHILD = #{record.isListChild,jdbcType=BIGINT},
+      </if>
+      <if test="record.pageSize != null" >
+        PAGE_SIZE = #{record.pageSize,jdbcType=BIGINT},
+      </if>
+      <if test="record.tplChnlId != null" >
+        TPL_CHNL_ID = #{record.tplChnlId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tplContId != null" >
+        TPL_CONT_ID = #{record.tplContId,jdbcType=BIGINT},
+      </if>
+      <if test="record.hasTitleImg != null" >
+        HAS_TITLE_IMG = #{record.hasTitleImg,jdbcType=BIGINT},
+      </if>
+      <if test="record.hasContImg != null" >
+        HAS_CONT_IMG = #{record.hasContImg,jdbcType=BIGINT},
+      </if>
+      <if test="record.commentControl != null" >
+        COMMENT_CONTROL = #{record.commentControl,jdbcType=BIGINT},
+      </if>
+      <if test="record.allowUpdown != null" >
+        ALLOW_UPDOWN = #{record.allowUpdown,jdbcType=BIGINT},
+      </if>
+      <if test="record.isBlank != null" >
+        IS_BLANK = #{record.isBlank,jdbcType=BIGINT},
+      </if>
+      <if test="record.link != null" >
+        LINK = #{record.link,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.title != null" >
+        TITLE = #{record.title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.keywords != null" >
+        KEYWORDS = #{record.keywords,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cms2_channel_ext
+    set ID = #{record.id,jdbcType=BIGINT},
+      CHANNEL_ID = #{record.channelId,jdbcType=BIGINT},
+      FINAL_STEP = #{record.finalStep,jdbcType=BIGINT},
+      AFTER_CHECK = #{record.afterCheck,jdbcType=BIGINT},
+      TITLE_IMG_WIDTH = #{record.titleImgWidth,jdbcType=BIGINT},
+      TITLE_IMG_HEIGHT = #{record.titleImgHeight,jdbcType=BIGINT},
+      CONT_IMG_WIDTH = #{record.contImgWidth,jdbcType=BIGINT},
+      CONT_IMG_HEIGHT = #{record.contImgHeight,jdbcType=BIGINT},
+      IS_STATIC_CHNL = #{record.isStaticChnl,jdbcType=BIGINT},
+      IS_STATIC_CONT = #{record.isStaticCont,jdbcType=BIGINT},
+      IS_ACCESS_BY_DIR = #{record.isAccessByDir,jdbcType=BIGINT},
+      IS_LIST_CHILD = #{record.isListChild,jdbcType=BIGINT},
+      PAGE_SIZE = #{record.pageSize,jdbcType=BIGINT},
+      TPL_CHNL_ID = #{record.tplChnlId,jdbcType=BIGINT},
+      TPL_CONT_ID = #{record.tplContId,jdbcType=BIGINT},
+      HAS_TITLE_IMG = #{record.hasTitleImg,jdbcType=BIGINT},
+      HAS_CONT_IMG = #{record.hasContImg,jdbcType=BIGINT},
+      COMMENT_CONTROL = #{record.commentControl,jdbcType=BIGINT},
+      ALLOW_UPDOWN = #{record.allowUpdown,jdbcType=BIGINT},
+      IS_BLANK = #{record.isBlank,jdbcType=BIGINT},
+      LINK = #{record.link,jdbcType=LONGVARCHAR},
+      TITLE = #{record.title,jdbcType=LONGVARCHAR},
+      REMARK = #{record.remark,jdbcType=LONGVARCHAR},
+      KEYWORDS = #{record.keywords,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cms2_channel_ext
+    set ID = #{record.id,jdbcType=BIGINT},
+      CHANNEL_ID = #{record.channelId,jdbcType=BIGINT},
+      FINAL_STEP = #{record.finalStep,jdbcType=BIGINT},
+      AFTER_CHECK = #{record.afterCheck,jdbcType=BIGINT},
+      TITLE_IMG_WIDTH = #{record.titleImgWidth,jdbcType=BIGINT},
+      TITLE_IMG_HEIGHT = #{record.titleImgHeight,jdbcType=BIGINT},
+      CONT_IMG_WIDTH = #{record.contImgWidth,jdbcType=BIGINT},
+      CONT_IMG_HEIGHT = #{record.contImgHeight,jdbcType=BIGINT},
+      IS_STATIC_CHNL = #{record.isStaticChnl,jdbcType=BIGINT},
+      IS_STATIC_CONT = #{record.isStaticCont,jdbcType=BIGINT},
+      IS_ACCESS_BY_DIR = #{record.isAccessByDir,jdbcType=BIGINT},
+      IS_LIST_CHILD = #{record.isListChild,jdbcType=BIGINT},
+      PAGE_SIZE = #{record.pageSize,jdbcType=BIGINT},
+      TPL_CHNL_ID = #{record.tplChnlId,jdbcType=BIGINT},
+      TPL_CONT_ID = #{record.tplContId,jdbcType=BIGINT},
+      HAS_TITLE_IMG = #{record.hasTitleImg,jdbcType=BIGINT},
+      HAS_CONT_IMG = #{record.hasContImg,jdbcType=BIGINT},
+      COMMENT_CONTROL = #{record.commentControl,jdbcType=BIGINT},
+      ALLOW_UPDOWN = #{record.allowUpdown,jdbcType=BIGINT},
+      IS_BLANK = #{record.isBlank,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

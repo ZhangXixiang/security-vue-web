@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.User">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="office_phone" jdbcType="VARCHAR" property="officePhone" />
+    <result column="home_phone" jdbcType="VARCHAR" property="homePhone" />
+    <result column="per_email" jdbcType="VARCHAR" property="perEmail" />
+    <result column="per_zipcode" jdbcType="VARCHAR" property="perZipcode" />
+    <result column="person_addr" jdbcType="VARCHAR" property="personAddr" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="common_remark" jdbcType="VARCHAR" property="commonRemark" />
+    <result column="certificates_id" jdbcType="VARCHAR" property="certificatesId" />
+    <result column="fund_account" jdbcType="VARCHAR" property="fundAccount" />
+    <result column="holder_account" jdbcType="VARCHAR" property="holderAccount" />
+    <result column="seted_pay_pwd" jdbcType="VARCHAR" property="setedPayPwd" />
+    <result column="part_categories2" jdbcType="VARCHAR" property="partCategories2" />
+    <result column="user_channel" jdbcType="VARCHAR" property="userChannel" />
+    <result column="urgent_mobile" jdbcType="VARCHAR" property="urgentMobile" />
+    <result column="head_img" jdbcType="VARCHAR" property="headImg" />
+    <result column="flower_name" jdbcType="VARCHAR" property="flowerName" />
+  </resultMap>
+ 
+</mapper>

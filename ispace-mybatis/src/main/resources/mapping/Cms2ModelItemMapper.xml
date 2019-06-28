@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.space.mybatis.dao.Cms2ModelItemMapper" >
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Cms2ModelItem" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="MODEL_ID" property="modelId" jdbcType="BIGINT" />
+    <result column="FIELD" property="field" jdbcType="VARCHAR" />
+    <result column="ITEM_LABEL" property="itemLabel" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="BIGINT" />
+    <result column="TEXT_SIZE" property="textSize" jdbcType="VARCHAR" />
+    <result column="AREA_ROWS" property="areaRows" jdbcType="VARCHAR" />
+    <result column="AREA_COLS" property="areaCols" jdbcType="VARCHAR" />
+    <result column="HELP_POSITION" property="helpPosition" jdbcType="BIGINT" />
+    <result column="DATA_TYPE" property="dataType" jdbcType="BIGINT" />
+    <result column="IS_SINGLE" property="isSingle" jdbcType="BIGINT" />
+    <result column="IS_CHANNEL" property="isChannel" jdbcType="BIGINT" />
+    <result column="IS_CUSTOM" property="isCustom" jdbcType="BIGINT" />
+    <result column="IS_DISPLAY" property="isDisplay" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.space.mybatis.model.Cms2ModelItemWithBLOBs" extends="BaseResultMap" >
+    <result column="DEF_VALUE" property="defValue" jdbcType="LONGVARCHAR" />
+    <result column="OPT_VALUE" property="optValue" jdbcType="LONGVARCHAR" />
+    <result column="HELP" property="help" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, MODEL_ID, FIELD, ITEM_LABEL, PRIORITY, TEXT_SIZE, AREA_ROWS, AREA_COLS, HELP_POSITION, 
+    DATA_TYPE, IS_SINGLE, IS_CHANNEL, IS_CUSTOM, IS_DISPLAY
+  </sql>
+  <sql id="Blob_Column_List" >
+    DEF_VALUE, OPT_VALUE, HELP
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.space.mybatis.model.Cms2ModelItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms2_model_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.space.mybatis.model.Cms2ModelItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cms2_model_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.space.mybatis.model.Cms2ModelItemExample" >
+    delete from cms2_model_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.space.mybatis.model.Cms2ModelItemWithBLOBs" >
+    insert into cms2_model_item (ID, MODEL_ID, FIELD, 
+      ITEM_LABEL, PRIORITY, TEXT_SIZE, 
+      AREA_ROWS, AREA_COLS, HELP_POSITION, 
+      DATA_TYPE, IS_SINGLE, IS_CHANNEL, 
+      IS_CUSTOM, IS_DISPLAY, DEF_VALUE, 
+      OPT_VALUE, HELP)
+    values (#{id,jdbcType=BIGINT}, #{modelId,jdbcType=BIGINT}, #{field,jdbcType=VARCHAR}, 
+      #{itemLabel,jdbcType=VARCHAR}, #{priority,jdbcType=BIGINT}, #{textSize,jdbcType=VARCHAR}, 
+      #{areaRows,jdbcType=VARCHAR}, #{areaCols,jdbcType=VARCHAR}, #{helpPosition,jdbcType=BIGINT}, 
+      #{dataType,jdbcType=BIGINT}, #{isSingle,jdbcType=BIGINT}, #{isChannel,jdbcType=BIGINT}, 
+      #{isCustom,jdbcType=BIGINT}, #{isDisplay,jdbcType=BIGINT}, #{defValue,jdbcType=LONGVARCHAR}, 
+      #{optValue,jdbcType=LONGVARCHAR}, #{help,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.space.mybatis.model.Cms2ModelItemWithBLOBs" >
+    insert into cms2_model_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="modelId != null" >
+        MODEL_ID,
+      </if>
+      <if test="field != null" >
+        FIELD,
+      </if>
+      <if test="itemLabel != null" >
+        ITEM_LABEL,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="textSize != null" >
+        TEXT_SIZE,
+      </if>
+      <if test="areaRows != null" >
+        AREA_ROWS,
+      </if>
+      <if test="areaCols != null" >
+        AREA_COLS,
+      </if>
+      <if test="helpPosition != null" >
+        HELP_POSITION,
+      </if>
+      <if test="dataType != null" >
+        DATA_TYPE,
+      </if>
+      <if test="isSingle != null" >
+        IS_SINGLE,
+      </if>
+      <if test="isChannel != null" >
+        IS_CHANNEL,
+      </if>
+      <if test="isCustom != null" >
+        IS_CUSTOM,
+      </if>
+      <if test="isDisplay != null" >
+        IS_DISPLAY,
+      </if>
+      <if test="defValue != null" >
+        DEF_VALUE,
+      </if>
+      <if test="optValue != null" >
+        OPT_VALUE,
+      </if>
+      <if test="help != null" >
+        HELP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="field != null" >
+        #{field,jdbcType=VARCHAR},
+      </if>
+      <if test="itemLabel != null" >
+        #{itemLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=BIGINT},
+      </if>
+      <if test="textSize != null" >
+        #{textSize,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRows != null" >
+        #{areaRows,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCols != null" >
+        #{areaCols,jdbcType=VARCHAR},
+      </if>
+      <if test="helpPosition != null" >
+        #{helpPosition,jdbcType=BIGINT},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=BIGINT},
+      </if>
+      <if test="isSingle != null" >
+        #{isSingle,jdbcType=BIGINT},
+      </if>
+      <if test="isChannel != null" >
+        #{isChannel,jdbcType=BIGINT},
+      </if>
+      <if test="isCustom != null" >
+        #{isCustom,jdbcType=BIGINT},
+      </if>
+      <if test="isDisplay != null" >
+        #{isDisplay,jdbcType=BIGINT},
+      </if>
+      <if test="defValue != null" >
+        #{defValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="optValue != null" >
+        #{optValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="help != null" >
+        #{help,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.space.mybatis.model.Cms2ModelItemExample" resultType="java.lang.Integer" >
+    select count(*) from cms2_model_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cms2_model_item
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.modelId != null" >
+        MODEL_ID = #{record.modelId,jdbcType=BIGINT},
+      </if>
+      <if test="record.field != null" >
+        FIELD = #{record.field,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemLabel != null" >
+        ITEM_LABEL = #{record.itemLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null" >
+        PRIORITY = #{record.priority,jdbcType=BIGINT},
+      </if>
+      <if test="record.textSize != null" >
+        TEXT_SIZE = #{record.textSize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaRows != null" >
+        AREA_ROWS = #{record.areaRows,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaCols != null" >
+        AREA_COLS = #{record.areaCols,jdbcType=VARCHAR},
+      </if>
+      <if test="record.helpPosition != null" >
+        HELP_POSITION = #{record.helpPosition,jdbcType=BIGINT},
+      </if>
+      <if test="record.dataType != null" >
+        DATA_TYPE = #{record.dataType,jdbcType=BIGINT},
+      </if>
+      <if test="record.isSingle != null" >
+        IS_SINGLE = #{record.isSingle,jdbcType=BIGINT},
+      </if>
+      <if test="record.isChannel != null" >
+        IS_CHANNEL = #{record.isChannel,jdbcType=BIGINT},
+      </if>
+      <if test="record.isCustom != null" >
+        IS_CUSTOM = #{record.isCustom,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDisplay != null" >
+        IS_DISPLAY = #{record.isDisplay,jdbcType=BIGINT},
+      </if>
+      <if test="record.defValue != null" >
+        DEF_VALUE = #{record.defValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.optValue != null" >
+        OPT_VALUE = #{record.optValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.help != null" >
+        HELP = #{record.help,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cms2_model_item
+    set ID = #{record.id,jdbcType=BIGINT},
+      MODEL_ID = #{record.modelId,jdbcType=BIGINT},
+      FIELD = #{record.field,jdbcType=VARCHAR},
+      ITEM_LABEL = #{record.itemLabel,jdbcType=VARCHAR},
+      PRIORITY = #{record.priority,jdbcType=BIGINT},
+      TEXT_SIZE = #{record.textSize,jdbcType=VARCHAR},
+      AREA_ROWS = #{record.areaRows,jdbcType=VARCHAR},
+      AREA_COLS = #{record.areaCols,jdbcType=VARCHAR},
+      HELP_POSITION = #{record.helpPosition,jdbcType=BIGINT},
+      DATA_TYPE = #{record.dataType,jdbcType=BIGINT},
+      IS_SINGLE = #{record.isSingle,jdbcType=BIGINT},
+      IS_CHANNEL = #{record.isChannel,jdbcType=BIGINT},
+      IS_CUSTOM = #{record.isCustom,jdbcType=BIGINT},
+      IS_DISPLAY = #{record.isDisplay,jdbcType=BIGINT},
+      DEF_VALUE = #{record.defValue,jdbcType=LONGVARCHAR},
+      OPT_VALUE = #{record.optValue,jdbcType=LONGVARCHAR},
+      HELP = #{record.help,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cms2_model_item
+    set ID = #{record.id,jdbcType=BIGINT},
+      MODEL_ID = #{record.modelId,jdbcType=BIGINT},
+      FIELD = #{record.field,jdbcType=VARCHAR},
+      ITEM_LABEL = #{record.itemLabel,jdbcType=VARCHAR},
+      PRIORITY = #{record.priority,jdbcType=BIGINT},
+      TEXT_SIZE = #{record.textSize,jdbcType=VARCHAR},
+      AREA_ROWS = #{record.areaRows,jdbcType=VARCHAR},
+      AREA_COLS = #{record.areaCols,jdbcType=VARCHAR},
+      HELP_POSITION = #{record.helpPosition,jdbcType=BIGINT},
+      DATA_TYPE = #{record.dataType,jdbcType=BIGINT},
+      IS_SINGLE = #{record.isSingle,jdbcType=BIGINT},
+      IS_CHANNEL = #{record.isChannel,jdbcType=BIGINT},
+      IS_CUSTOM = #{record.isCustom,jdbcType=BIGINT},
+      IS_DISPLAY = #{record.isDisplay,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

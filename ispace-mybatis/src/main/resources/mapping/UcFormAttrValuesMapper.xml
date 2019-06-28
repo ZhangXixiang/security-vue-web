@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.space.mybatis.dao.UcFormAttrValuesMapper" >
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.UcFormAttrValues" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="FORM_ID" property="formId" jdbcType="BIGINT" />
+    <result column="OBJECT_ID" property="objectId" jdbcType="BIGINT" />
+    <result column="ATTR_ID" property="attrId" jdbcType="BIGINT" />
+    <result column="ATTR_KEY" property="attrKey" jdbcType="VARCHAR" />
+    <result column="ATTR_VALUE" property="attrValue" jdbcType="VARCHAR" />
+    <result column="IS_DELETED" property="isDeleted" jdbcType="VARCHAR" />
+    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="GMT_MODIFY" property="gmtModify" jdbcType="TIMESTAMP" />
+    <result column="POS_INDEX" property="posIndex" jdbcType="BIGINT" />
+    <result column="EXCHANGE_ID" property="exchangeId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.space.mybatis.model.UcFormAttrValues" extends="BaseResultMap" >
+    <result column="ATTR_VALUE" property="attrValue" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FORM_ID, OBJECT_ID, ATTR_ID, ATTR_KEY,ATTR_VALUE, IS_DELETED, GMT_CREATE, GMT_MODIFY, POS_INDEX,
+    EXCHANGE_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    ATTR_VALUE
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.space.mybatis.model.UcFormAttrValuesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from uc_form_attr_values
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.space.mybatis.model.UcFormAttrValues" >
+    select
+    <include refid="Base_Column_List" />
+    from uc_form_attr_values
+    where 1=1
+    <if test="id != null" >
+     and ID = #{id},
+    </if>
+
+    <if test="objectId != null" >
+      and OBJECT_ID = #{objectId}
+    </if>
+
+    <if test="attrKey != null" >
+      and ATTR_KEY = #{attrKey}
+    </if>
+    <if test="isDeleted != null" >
+      and IS_DELETED = #{isDeleted}
+    </if>
+    <if test="gmtCreate != null" >
+      and  GMT_CREATE = #{gmtCreate}
+    </if>
+    <if test="gmtModify != null" >
+      and  GMT_MODIFY = #{gmtModify}
+    </if>
+    <if test="posIndex != null" >
+      and  POS_INDEX = #{posIndex}
+    </if>
+    <if test="exchangeId != null" >
+      and  EXCHANGE_ID = #{exchangeId}
+    </if>
+    <if test="attrValue != null" >
+      and  ATTR_VALUE = #{attrValue}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.space.mybatis.model.UcFormAttrValuesExample" >
+    delete from uc_form_attr_values
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.space.mybatis.model.UcFormAttrValues" >
+    insert into uc_form_attr_values (ID, FORM_ID, OBJECT_ID, 
+      ATTR_ID, ATTR_KEY, IS_DELETED, 
+      GMT_CREATE, GMT_MODIFY, POS_INDEX, 
+      EXCHANGE_ID, ATTR_VALUE)
+    values (#{id,jdbcType=BIGINT}, #{formId,jdbcType=BIGINT}, #{objectId,jdbcType=BIGINT}, 
+      #{attrId,jdbcType=BIGINT}, #{attrKey,jdbcType=VARCHAR}, #{isDeleted,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, #{posIndex,jdbcType=BIGINT}, 
+      #{exchangeId,jdbcType=INTEGER}, #{attrValue,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.space.mybatis.model.UcFormAttrValues" >
+    insert into uc_form_attr_values
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+
+        FORM_ID,
+
+      <if test="objectId != null" >
+        OBJECT_ID,
+      </if>
+
+        ATTR_ID,
+
+      <if test="attrKey != null" >
+        ATTR_KEY,
+      </if>
+      <if test="isDeleted != null" >
+        IS_DELETED,
+      </if>
+      <if test="gmtCreate != null" >
+        GMT_CREATE,
+      </if>
+      <if test="gmtModify != null" >
+        GMT_MODIFY,
+      </if>
+      <if test="posIndex != null" >
+        POS_INDEX,
+      </if>
+
+        EXCHANGE_ID,
+
+      <if test="attrValue != null" >
+        ATTR_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="formId != null" >
+        (SELECT t.ID FROM uc_form t where t.FORM_EN='REG_FORM'),
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=BIGINT},
+      </if>
+      <if test="attrId != null" >
+        (SELECT t.ID from uc_form_attr t WHERE t.ATTR_KEY='token'),
+      </if>
+      <if test="attrKey != null" >
+        #{attrKey,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+       now(),
+      </if>
+      <if test="gmtModify != null" >
+        now(),
+      </if>
+      <if test="posIndex != null" >
+        #{posIndex,jdbcType=BIGINT},
+      </if>
+      <if test="exchangeId != null" >
+       get_curr_exchange_id(),
+      </if>
+      <if test="attrValue != null" >
+        #{attrValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.space.mybatis.model.UcFormAttrValuesExample" resultType="java.lang.Integer" >
+    select count(*) from uc_form_attr_values
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update uc_form_attr_values
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.formId != null" >
+        FORM_ID = #{record.formId,jdbcType=BIGINT},
+      </if>
+      <if test="record.objectId != null" >
+        OBJECT_ID = #{record.objectId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attrId != null" >
+        ATTR_ID = #{record.attrId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attrKey != null" >
+        ATTR_KEY = #{record.attrKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDeleted != null" >
+        IS_DELETED = #{record.isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null" >
+        GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModify != null" >
+        GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.posIndex != null" >
+        POS_INDEX = #{record.posIndex,jdbcType=BIGINT},
+      </if>
+      <if test="record.exchangeId != null" >
+        EXCHANGE_ID = #{record.exchangeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.attrValue != null" >
+        ATTR_VALUE = #{record.attrValue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update uc_form_attr_values
+    set ID = #{record.id,jdbcType=BIGINT},
+      FORM_ID = #{record.formId,jdbcType=BIGINT},
+      OBJECT_ID = #{record.objectId,jdbcType=BIGINT},
+      ATTR_ID = #{record.attrId,jdbcType=BIGINT},
+      ATTR_KEY = #{record.attrKey,jdbcType=VARCHAR},
+      IS_DELETED = #{record.isDeleted,jdbcType=VARCHAR},
+      GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP},
+      POS_INDEX = #{record.posIndex,jdbcType=BIGINT},
+      EXCHANGE_ID = #{record.exchangeId,jdbcType=INTEGER},
+      ATTR_VALUE = #{record.attrValue,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update uc_form_attr_values
+    set ID = #{record.id,jdbcType=BIGINT},
+      FORM_ID = #{record.formId,jdbcType=BIGINT},
+      OBJECT_ID = #{record.objectId,jdbcType=BIGINT},
+      ATTR_ID = #{record.attrId,jdbcType=BIGINT},
+      ATTR_KEY = #{record.attrKey,jdbcType=VARCHAR},
+      IS_DELETED = #{record.isDeleted,jdbcType=VARCHAR},
+      GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP},
+      POS_INDEX = #{record.posIndex,jdbcType=BIGINT},
+      EXCHANGE_ID = #{record.exchangeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

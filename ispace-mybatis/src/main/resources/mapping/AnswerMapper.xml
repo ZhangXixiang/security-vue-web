@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.AnswerMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Answer">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="topic_id" jdbcType="INTEGER" property="topicId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="cont" jdbcType="VARCHAR" property="cont" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_origin" jdbcType="INTEGER" property="isOrigin" />
+    <result column="good_count" jdbcType="INTEGER" property="goodCount" />
+    <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+  </resultMap>
+  
+  <resultMap id="AnswerResDtoMap" type="com.space.common.dto.dis.answer.AnswerResDto">
+  	<result column="answer_id" jdbcType="INTEGER" property="answerId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="cont" jdbcType="VARCHAR" property="cont" />
+    <result column="top_name" jdbcType="VARCHAR" property="topName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="good_Count" jdbcType="INTEGER" property="goodCount" />
+    <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="head_Img" jdbcType="VARCHAR" property="headImg" />
+  </resultMap>
+  
+  <select id="getAnswers" resultMap="AnswerResDtoMap">
+  	SELECT art.id as answer_id, art.title, art.cont, topic.`name` as top_name, art.create_time, 
+  	       art.good_Count, `user`.`name` as user_name, `user`.head_Img, art.collect_count, art.comment_count 
+	FROM answer art
+	LEFT JOIN topic topic on topic.id = art.topic_id
+	LEFT JOIN `user` on `user`.id = art.user_id
+	WHERE topic.is_deleted = 0 
+	<if test="topicId != null and topicId != 0">
+		AND topic.id = #{topicId}
+	</if>
+	<if test="search != null">
+		AND (
+			art.title LIKE concat(concat('%', #{search}), '%') 
+		    or art.cont LIKE concat(concat('%', #{search}), '%')
+		) 
+	</if>
+	<if test="answerId != null">
+		AND art.id = #{answerId}
+	</if>
+	<if test="userId != null">
+		 AND `user`.id = #{userId}
+	</if>
+  </select>
+
+  <select id="listAnswer" resultType="com.space.common.dto.dis.answer.AnswerListResDTO">
+  	SELECT art.id as answerId, art.title, art.cont, topic.`name` as topName, art.create_Time as createTime,
+  	       art.good_count as goodCount, `user`.`name` as userName, art.collect_count as collectCount, art.comment_count as commentCount,art.is_deleted as isDeleted,
+  	       art.u_t as uT, art.u_p as uP
+	FROM answer art
+	LEFT JOIN topic topic on topic.id = art.topic_id
+	LEFT JOIN `user` on `user`.id = art.user_id
+	WHERE topic.is_deleted = 0
+<!--	<if test="topicId != null and topicId != 0">-->
+<!--		AND topic.id = #{topicId}-->
+<!--	</if>-->
+<!--	<if test="search != null">-->
+<!--		AND (-->
+<!--			art.title LIKE concat(concat('%', #{search}), '%')-->
+<!--		)-->
+<!--	</if>-->
+	  limit #{start},#{size}
+  </select>
+
+
+	<select id="countForAll" parameterType="com.space.mybatis.model.Answer" resultType="java.lang.Integer" >
+		SELECT count(1)
+	FROM answer art
+	LEFT JOIN topic topic on topic.id = art.topic_id
+	LEFT JOIN `user` on `user`.id = art.user_id
+	WHERE topic.is_deleted = 0
+	</select>
+
+
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

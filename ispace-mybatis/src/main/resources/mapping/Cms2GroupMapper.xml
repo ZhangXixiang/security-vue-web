@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.space.mybatis.dao.Cms2GroupMapper" >
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Cms2Group" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="BIGINT" />
+    <result column="NEED_CAPTCHA" property="needCaptcha" jdbcType="BIGINT" />
+    <result column="NEED_CHECK" property="needCheck" jdbcType="BIGINT" />
+    <result column="ALLOW_PER_DAY" property="allowPerDay" jdbcType="BIGINT" />
+    <result column="ALLOW_MAX_FILE" property="allowMaxFile" jdbcType="BIGINT" />
+    <result column="IS_REG_DEF" property="isRegDef" jdbcType="BIGINT" />
+    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="GMT_MODIFY" property="gmtModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.space.mybatis.model.Cms2Group" extends="BaseResultMap" >
+    <result column="ALLOW_SUFFIX" property="allowSuffix" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CODE, GROUP_NAME, PRIORITY, NEED_CAPTCHA, NEED_CHECK, ALLOW_PER_DAY, ALLOW_MAX_FILE, 
+    IS_REG_DEF, GMT_CREATE, GMT_MODIFY
+  </sql>
+  <sql id="Blob_Column_List" >
+    ALLOW_SUFFIX
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.space.mybatis.model.Cms2GroupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms2_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.space.mybatis.model.Cms2GroupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cms2_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.space.mybatis.model.Cms2GroupExample" >
+    delete from cms2_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.space.mybatis.model.Cms2Group" >
+    insert into cms2_group (ID, CODE, GROUP_NAME, 
+      PRIORITY, NEED_CAPTCHA, NEED_CHECK, 
+      ALLOW_PER_DAY, ALLOW_MAX_FILE, IS_REG_DEF, 
+      GMT_CREATE, GMT_MODIFY, ALLOW_SUFFIX
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=BIGINT}, #{needCaptcha,jdbcType=BIGINT}, #{needCheck,jdbcType=BIGINT}, 
+      #{allowPerDay,jdbcType=BIGINT}, #{allowMaxFile,jdbcType=BIGINT}, #{isRegDef,jdbcType=BIGINT}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, #{allowSuffix,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.space.mybatis.model.Cms2Group" >
+    insert into cms2_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="groupName != null" >
+        GROUP_NAME,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="needCaptcha != null" >
+        NEED_CAPTCHA,
+      </if>
+      <if test="needCheck != null" >
+        NEED_CHECK,
+      </if>
+      <if test="allowPerDay != null" >
+        ALLOW_PER_DAY,
+      </if>
+      <if test="allowMaxFile != null" >
+        ALLOW_MAX_FILE,
+      </if>
+      <if test="isRegDef != null" >
+        IS_REG_DEF,
+      </if>
+      <if test="gmtCreate != null" >
+        GMT_CREATE,
+      </if>
+      <if test="gmtModify != null" >
+        GMT_MODIFY,
+      </if>
+      <if test="allowSuffix != null" >
+        ALLOW_SUFFIX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=BIGINT},
+      </if>
+      <if test="needCaptcha != null" >
+        #{needCaptcha,jdbcType=BIGINT},
+      </if>
+      <if test="needCheck != null" >
+        #{needCheck,jdbcType=BIGINT},
+      </if>
+      <if test="allowPerDay != null" >
+        #{allowPerDay,jdbcType=BIGINT},
+      </if>
+      <if test="allowMaxFile != null" >
+        #{allowMaxFile,jdbcType=BIGINT},
+      </if>
+      <if test="isRegDef != null" >
+        #{isRegDef,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allowSuffix != null" >
+        #{allowSuffix,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.space.mybatis.model.Cms2GroupExample" resultType="java.lang.Integer" >
+    select count(*) from cms2_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cms2_group
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null" >
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupName != null" >
+        GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null" >
+        PRIORITY = #{record.priority,jdbcType=BIGINT},
+      </if>
+      <if test="record.needCaptcha != null" >
+        NEED_CAPTCHA = #{record.needCaptcha,jdbcType=BIGINT},
+      </if>
+      <if test="record.needCheck != null" >
+        NEED_CHECK = #{record.needCheck,jdbcType=BIGINT},
+      </if>
+      <if test="record.allowPerDay != null" >
+        ALLOW_PER_DAY = #{record.allowPerDay,jdbcType=BIGINT},
+      </if>
+      <if test="record.allowMaxFile != null" >
+        ALLOW_MAX_FILE = #{record.allowMaxFile,jdbcType=BIGINT},
+      </if>
+      <if test="record.isRegDef != null" >
+        IS_REG_DEF = #{record.isRegDef,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtCreate != null" >
+        GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModify != null" >
+        GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.allowSuffix != null" >
+        ALLOW_SUFFIX = #{record.allowSuffix,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cms2_group
+    set ID = #{record.id,jdbcType=BIGINT},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      PRIORITY = #{record.priority,jdbcType=BIGINT},
+      NEED_CAPTCHA = #{record.needCaptcha,jdbcType=BIGINT},
+      NEED_CHECK = #{record.needCheck,jdbcType=BIGINT},
+      ALLOW_PER_DAY = #{record.allowPerDay,jdbcType=BIGINT},
+      ALLOW_MAX_FILE = #{record.allowMaxFile,jdbcType=BIGINT},
+      IS_REG_DEF = #{record.isRegDef,jdbcType=BIGINT},
+      GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP},
+      ALLOW_SUFFIX = #{record.allowSuffix,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cms2_group
+    set ID = #{record.id,jdbcType=BIGINT},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
+      PRIORITY = #{record.priority,jdbcType=BIGINT},
+      NEED_CAPTCHA = #{record.needCaptcha,jdbcType=BIGINT},
+      NEED_CHECK = #{record.needCheck,jdbcType=BIGINT},
+      ALLOW_PER_DAY = #{record.allowPerDay,jdbcType=BIGINT},
+      ALLOW_MAX_FILE = #{record.allowMaxFile,jdbcType=BIGINT},
+      IS_REG_DEF = #{record.isRegDef,jdbcType=BIGINT},
+      GMT_CREATE = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      GMT_MODIFY = #{record.gmtModify,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

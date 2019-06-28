@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.space.mybatis.dao.UcUsersFullMapper" >
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.UcUsersFull" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="form_id" property="formId" jdbcType="INTEGER" />
+    <result column="query_attr" property="queryAttr" jdbcType="VARCHAR" />
+    <result column="list_attr" property="listAttr" jdbcType="VARCHAR" />
+    <result column="login_attr" property="loginAttr" jdbcType="VARCHAR" />
+    <result column="interface_query_attr" property="interfaceQueryAttr" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
+    <result column="gmt_audit" property="gmtAudit" jdbcType="TIMESTAMP" />
+    <result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="reg_source" property="regSource" jdbcType="TINYINT" />
+    <result column="info_apply" property="infoApply" jdbcType="CHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="is_deleted" property="isDeleted" jdbcType="CHAR" />
+    <result column="creator_id" property="creatorId" jdbcType="INTEGER" />
+    <result column="root_user_id" property="rootUserId" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
+    <result column="pay_pwd" property="payPwd" jdbcType="VARCHAR" />
+    <result column="login_num" property="loginNum" jdbcType="INTEGER" />
+    <result column="login_failed_times" property="loginFailedTimes" jdbcType="INTEGER" />
+    <result column="user_roles" property="userRoles" jdbcType="INTEGER" />
+    <result column="company_cn" property="companyCn" jdbcType="VARCHAR" />
+    <result column="company_cn_short" property="companyCnShort" jdbcType="VARCHAR" />
+    <result column="company_en" property="companyEn" jdbcType="VARCHAR" />
+    <result column="company_code" property="companyCode" jdbcType="VARCHAR" />
+    <result column="fund_account" property="fundAccount" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="tax_cert" property="taxCert" jdbcType="VARCHAR" />
+    <result column="business_cert" property="businessCert" jdbcType="VARCHAR" />
+    <result column="biz_permit_cert" property="bizPermitCert" jdbcType="VARCHAR" />
+    <result column="reg_date" property="regDate" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="agency_person" property="agencyPerson" jdbcType="VARCHAR" />
+    <result column="reg_capital" property="regCapital" jdbcType="VARCHAR" />
+    <result column="settle_bank" property="settleBank" jdbcType="VARCHAR" />
+    <result column="open_bank" property="openBank" jdbcType="VARCHAR" />
+    <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="bank_account_name" property="bankAccountName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+    <result column="comp_zip_code" property="compZipCode" jdbcType="VARCHAR" />
+    <result column="comp_country_code" property="compCountryCode" jdbcType="VARCHAR" />
+    <result column="comp_province_code" property="compProvinceCode" jdbcType="VARCHAR" />
+    <result column="comp_city_code" property="compCityCode" jdbcType="VARCHAR" />
+    <result column="comp_district_code" property="compDistrictCode" jdbcType="VARCHAR" />
+    <result column="comp_addr" property="compAddr" jdbcType="VARCHAR" />
+    <result column="comp_remark" property="compRemark" jdbcType="VARCHAR" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="ukey_str" property="ukeyStr" jdbcType="VARCHAR" />
+    <result column="ukey_name" property="ukeyName" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="job_no" property="jobNo" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="im" property="im" jdbcType="VARCHAR" />
+    <result column="office_phone" property="officePhone" jdbcType="VARCHAR" />
+    <result column="home_phone" property="homePhone" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="work_year" property="workYear" jdbcType="VARCHAR" />
+    <result column="country_code" property="countryCode" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="id_type" property="idType" jdbcType="VARCHAR" />
+    <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="CHAR" />
+    <result column="is_active" property="isActive" jdbcType="CHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="u_ext1" property="uExt1" jdbcType="VARCHAR" />
+    <result column="u_ext2" property="uExt2" jdbcType="VARCHAR" />
+    <result column="u_ext3" property="uExt3" jdbcType="VARCHAR" />
+    <result column="ci_ext1" property="ciExt1" jdbcType="VARCHAR" />
+    <result column="ci_ext2" property="ciExt2" jdbcType="VARCHAR" />
+    <result column="ci_ext3" property="ciExt3" jdbcType="VARCHAR" />
+    <result column="ci_ext4" property="ciExt4" jdbcType="VARCHAR" />
+    <result column="ci_ext5" property="ciExt5" jdbcType="VARCHAR" />
+    <result column="ui_ext1" property="uiExt1" jdbcType="VARCHAR" />
+    <result column="ui_ext2" property="uiExt2" jdbcType="VARCHAR" />
+    <result column="ui_ext3" property="uiExt3" jdbcType="VARCHAR" />
+    <result column="ui_ext4" property="uiExt4" jdbcType="VARCHAR" />
+    <result column="ui_ext5" property="uiExt5" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+    <result column="exchange_id" property="exchangeId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, form_id, query_attr, list_attr, login_attr, interface_query_attr, status, audit_remark, 
+    gmt_audit, last_login_ip, last_login_time, reg_source, info_apply, parent_id, is_deleted, 
+    creator_id, root_user_id, account, name, login_pwd, pay_pwd, login_num, login_failed_times, 
+    user_roles, company_cn, company_cn_short, company_en, company_code, fund_account, 
+    company_type, org_code, tax_cert, business_cert, biz_permit_cert, reg_date, legal_person, 
+    agency_person, reg_capital, settle_bank, open_bank, bank_account, bank_account_name, 
+    phone, fax, mobile, website, comp_zip_code, comp_country_code, comp_province_code, 
+    comp_city_code, comp_district_code, comp_addr, comp_remark, user_code, user_type, 
+    ukey_str, ukey_name, job, job_no, birthday, im, office_phone, home_phone, dept_name, 
+    email, zip_code, work_year, country_code, province_code, city_code, district_code, 
+    address, id_type, id_no, education, degree, gender, is_active, remark, u_ext1, u_ext2, 
+    u_ext3, ci_ext1, ci_ext2, ci_ext3, ci_ext4, ci_ext5, ui_ext1, ui_ext2, ui_ext3, ui_ext4, 
+    ui_ext5, gmt_create, gmt_modify, exchange_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.space.mybatis.model.UcUsersFullExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from uc_users_full
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.space.mybatis.model.UcUsersFullExample" >
+    delete from uc_users_full
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.space.mybatis.model.UcUsersFull" >
+    insert into uc_users_full (id, form_id, query_attr, 
+      list_attr, login_attr, interface_query_attr, 
+      status, audit_remark, gmt_audit, 
+      last_login_ip, last_login_time, reg_source, 
+      info_apply, parent_id, is_deleted, 
+      creator_id, root_user_id, account, 
+      name, login_pwd, pay_pwd, 
+      login_num, login_failed_times, user_roles, 
+      company_cn, company_cn_short, company_en, 
+      company_code, fund_account, company_type, 
+      org_code, tax_cert, business_cert, 
+      biz_permit_cert, reg_date, legal_person, 
+      agency_person, reg_capital, settle_bank, 
+      open_bank, bank_account, bank_account_name, 
+      phone, fax, mobile, 
+      website, comp_zip_code, comp_country_code, 
+      comp_province_code, comp_city_code, comp_district_code, 
+      comp_addr, comp_remark, user_code, 
+      user_type, ukey_str, ukey_name, 
+      job, job_no, birthday, 
+      im, office_phone, home_phone, 
+      dept_name, email, zip_code, 
+      work_year, country_code, province_code, 
+      city_code, district_code, address, 
+      id_type, id_no, education, 
+      degree, gender, is_active, 
+      remark, u_ext1, u_ext2, 
+      u_ext3, ci_ext1, ci_ext2, 
+      ci_ext3, ci_ext4, ci_ext5, 
+      ui_ext1, ui_ext2, ui_ext3, 
+      ui_ext4, ui_ext5, gmt_create, 
+      gmt_modify, exchange_id)
+    values (#{id,jdbcType=INTEGER}, #{formId,jdbcType=INTEGER}, #{queryAttr,jdbcType=VARCHAR}, 
+      #{listAttr,jdbcType=VARCHAR}, #{loginAttr,jdbcType=VARCHAR}, #{interfaceQueryAttr,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{auditRemark,jdbcType=VARCHAR}, #{gmtAudit,jdbcType=TIMESTAMP}, 
+      #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{regSource,jdbcType=TINYINT}, 
+      #{infoApply,jdbcType=CHAR}, #{parentId,jdbcType=INTEGER}, #{isDeleted,jdbcType=CHAR}, 
+      #{creatorId,jdbcType=INTEGER}, #{rootUserId,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{loginPwd,jdbcType=VARCHAR}, #{payPwd,jdbcType=VARCHAR}, 
+      #{loginNum,jdbcType=INTEGER}, #{loginFailedTimes,jdbcType=INTEGER}, #{userRoles,jdbcType=INTEGER}, 
+      #{companyCn,jdbcType=VARCHAR}, #{companyCnShort,jdbcType=VARCHAR}, #{companyEn,jdbcType=VARCHAR}, 
+      #{companyCode,jdbcType=VARCHAR}, #{fundAccount,jdbcType=VARCHAR}, #{companyType,jdbcType=VARCHAR}, 
+      #{orgCode,jdbcType=VARCHAR}, #{taxCert,jdbcType=VARCHAR}, #{businessCert,jdbcType=VARCHAR}, 
+      #{bizPermitCert,jdbcType=VARCHAR}, #{regDate,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, 
+      #{agencyPerson,jdbcType=VARCHAR}, #{regCapital,jdbcType=VARCHAR}, #{settleBank,jdbcType=VARCHAR}, 
+      #{openBank,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, #{bankAccountName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{website,jdbcType=VARCHAR}, #{compZipCode,jdbcType=VARCHAR}, #{compCountryCode,jdbcType=VARCHAR}, 
+      #{compProvinceCode,jdbcType=VARCHAR}, #{compCityCode,jdbcType=VARCHAR}, #{compDistrictCode,jdbcType=VARCHAR}, 
+      #{compAddr,jdbcType=VARCHAR}, #{compRemark,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{ukeyStr,jdbcType=VARCHAR}, #{ukeyName,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{jobNo,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{im,jdbcType=VARCHAR}, #{officePhone,jdbcType=VARCHAR}, #{homePhone,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{workYear,jdbcType=VARCHAR}, #{countryCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{districtCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{idType,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{degree,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{isActive,jdbcType=CHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{uExt1,jdbcType=VARCHAR}, #{uExt2,jdbcType=VARCHAR}, 
+      #{uExt3,jdbcType=VARCHAR}, #{ciExt1,jdbcType=VARCHAR}, #{ciExt2,jdbcType=VARCHAR}, 
+      #{ciExt3,jdbcType=VARCHAR}, #{ciExt4,jdbcType=VARCHAR}, #{ciExt5,jdbcType=VARCHAR}, 
+      #{uiExt1,jdbcType=VARCHAR}, #{uiExt2,jdbcType=VARCHAR}, #{uiExt3,jdbcType=VARCHAR}, 
+      #{uiExt4,jdbcType=VARCHAR}, #{uiExt5,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModify,jdbcType=TIMESTAMP}, #{exchangeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.space.mybatis.model.UcUsersFull" >
+    insert into uc_users_full
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="formId != null" >
+        form_id,
+      </if>
+      <if test="queryAttr != null" >
+        query_attr,
+      </if>
+      <if test="listAttr != null" >
+        list_attr,
+      </if>
+      <if test="loginAttr != null" >
+        login_attr,
+      </if>
+      <if test="interfaceQueryAttr != null" >
+        interface_query_attr,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark,
+      </if>
+      <if test="gmtAudit != null" >
+        gmt_audit,
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="regSource != null" >
+        reg_source,
+      </if>
+      <if test="infoApply != null" >
+        info_apply,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="rootUserId != null" >
+        root_user_id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="loginPwd != null" >
+        login_pwd,
+      </if>
+      <if test="payPwd != null" >
+        pay_pwd,
+      </if>
+      <if test="loginNum != null" >
+        login_num,
+      </if>
+      <if test="loginFailedTimes != null" >
+        login_failed_times,
+      </if>
+      <if test="userRoles != null" >
+        user_roles,
+      </if>
+      <if test="companyCn != null" >
+        company_cn,
+      </if>
+      <if test="companyCnShort != null" >
+        company_cn_short,
+      </if>
+      <if test="companyEn != null" >
+        company_en,
+      </if>
+      <if test="companyCode != null" >
+        company_code,
+      </if>
+      <if test="fundAccount != null" >
+        fund_account,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="taxCert != null" >
+        tax_cert,
+      </if>
+      <if test="businessCert != null" >
+        business_cert,
+      </if>
+      <if test="bizPermitCert != null" >
+        biz_permit_cert,
+      </if>
+      <if test="regDate != null" >
+        reg_date,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="agencyPerson != null" >
+        agency_person,
+      </if>
+      <if test="regCapital != null" >
+        reg_capital,
+      </if>
+      <if test="settleBank != null" >
+        settle_bank,
+      </if>
+      <if test="openBank != null" >
+        open_bank,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+      <if test="bankAccountName != null" >
+        bank_account_name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="compZipCode != null" >
+        comp_zip_code,
+      </if>
+      <if test="compCountryCode != null" >
+        comp_country_code,
+      </if>
+      <if test="compProvinceCode != null" >
+        comp_province_code,
+      </if>
+      <if test="compCityCode != null" >
+        comp_city_code,
+      </if>
+      <if test="compDistrictCode != null" >
+        comp_district_code,
+      </if>
+      <if test="compAddr != null" >
+        comp_addr,
+      </if>
+      <if test="compRemark != null" >
+        comp_remark,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="ukeyStr != null" >
+        ukey_str,
+      </if>
+      <if test="ukeyName != null" >
+        ukey_name,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="jobNo != null" >
+        job_no,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="im != null" >
+        im,
+      </if>
+      <if test="officePhone != null" >
+        office_phone,
+      </if>
+      <if test="homePhone != null" >
+        home_phone,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="workYear != null" >
+        work_year,
+      </if>
+      <if test="countryCode != null" >
+        country_code,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="districtCode != null" >
+        district_code,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="idType != null" >
+        id_type,
+      </if>
+      <if test="idNo != null" >
+        id_no,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="uExt1 != null" >
+        u_ext1,
+      </if>
+      <if test="uExt2 != null" >
+        u_ext2,
+      </if>
+      <if test="uExt3 != null" >
+        u_ext3,
+      </if>
+      <if test="ciExt1 != null" >
+        ci_ext1,
+      </if>
+      <if test="ciExt2 != null" >
+        ci_ext2,
+      </if>
+      <if test="ciExt3 != null" >
+        ci_ext3,
+      </if>
+      <if test="ciExt4 != null" >
+        ci_ext4,
+      </if>
+      <if test="ciExt5 != null" >
+        ci_ext5,
+      </if>
+      <if test="uiExt1 != null" >
+        ui_ext1,
+      </if>
+      <if test="uiExt2 != null" >
+        ui_ext2,
+      </if>
+      <if test="uiExt3 != null" >
+        ui_ext3,
+      </if>
+      <if test="uiExt4 != null" >
+        ui_ext4,
+      </if>
+      <if test="uiExt5 != null" >
+        ui_ext5,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify,
+      </if>
+      <if test="exchangeId != null" >
+        exchange_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="formId != null" >
+        #{formId,jdbcType=INTEGER},
+      </if>
+      <if test="queryAttr != null" >
+        #{queryAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="listAttr != null" >
+        #{listAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAttr != null" >
+        #{loginAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceQueryAttr != null" >
+        #{interfaceQueryAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtAudit != null" >
+        #{gmtAudit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regSource != null" >
+        #{regSource,jdbcType=TINYINT},
+      </if>
+      <if test="infoApply != null" >
+        #{infoApply,jdbcType=CHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="rootUserId != null" >
+        #{rootUserId,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null" >
+        #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="payPwd != null" >
+        #{payPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="loginNum != null" >
+        #{loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="loginFailedTimes != null" >
+        #{loginFailedTimes,jdbcType=INTEGER},
+      </if>
+      <if test="userRoles != null" >
+        #{userRoles,jdbcType=INTEGER},
+      </if>
+      <if test="companyCn != null" >
+        #{companyCn,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCnShort != null" >
+        #{companyCnShort,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEn != null" >
+        #{companyEn,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fundAccount != null" >
+        #{fundAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCert != null" >
+        #{taxCert,jdbcType=VARCHAR},
+      </if>
+      <if test="businessCert != null" >
+        #{businessCert,jdbcType=VARCHAR},
+      </if>
+      <if test="bizPermitCert != null" >
+        #{bizPermitCert,jdbcType=VARCHAR},
+      </if>
+      <if test="regDate != null" >
+        #{regDate,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyPerson != null" >
+        #{agencyPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="regCapital != null" >
+        #{regCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="settleBank != null" >
+        #{settleBank,jdbcType=VARCHAR},
+      </if>
+      <if test="openBank != null" >
+        #{openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="compZipCode != null" >
+        #{compZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="compCountryCode != null" >
+        #{compCountryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="compProvinceCode != null" >
+        #{compProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="compCityCode != null" >
+        #{compCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="compDistrictCode != null" >
+        #{compDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="compAddr != null" >
+        #{compAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="compRemark != null" >
+        #{compRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="ukeyStr != null" >
+        #{ukeyStr,jdbcType=VARCHAR},
+      </if>
+      <if test="ukeyName != null" >
+        #{ukeyName,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNo != null" >
+        #{jobNo,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="im != null" >
+        #{im,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="homePhone != null" >
+        #{homePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="workYear != null" >
+        #{workYear,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null" >
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null" >
+        #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="uExt1 != null" >
+        #{uExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="uExt2 != null" >
+        #{uExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="uExt3 != null" >
+        #{uExt3,jdbcType=VARCHAR},
+      </if>
+      <if test="ciExt1 != null" >
+        #{ciExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="ciExt2 != null" >
+        #{ciExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="ciExt3 != null" >
+        #{ciExt3,jdbcType=VARCHAR},
+      </if>
+      <if test="ciExt4 != null" >
+        #{ciExt4,jdbcType=VARCHAR},
+      </if>
+      <if test="ciExt5 != null" >
+        #{ciExt5,jdbcType=VARCHAR},
+      </if>
+      <if test="uiExt1 != null" >
+        #{uiExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="uiExt2 != null" >
+        #{uiExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="uiExt3 != null" >
+        #{uiExt3,jdbcType=VARCHAR},
+      </if>
+      <if test="uiExt4 != null" >
+        #{uiExt4,jdbcType=VARCHAR},
+      </if>
+      <if test="uiExt5 != null" >
+        #{uiExt5,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exchangeId != null" >
+        #{exchangeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.space.mybatis.model.UcUsersFullExample" resultType="java.lang.Integer" >
+    select count(*) from uc_users_full
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update uc_users_full
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.formId != null" >
+        form_id = #{record.formId,jdbcType=INTEGER},
+      </if>
+      <if test="record.queryAttr != null" >
+        query_attr = #{record.queryAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listAttr != null" >
+        list_attr = #{record.listAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginAttr != null" >
+        login_attr = #{record.loginAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interfaceQueryAttr != null" >
+        interface_query_attr = #{record.interfaceQueryAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.auditRemark != null" >
+        audit_remark = #{record.auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtAudit != null" >
+        gmt_audit = #{record.gmtAudit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastLoginIp != null" >
+        last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastLoginTime != null" >
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regSource != null" >
+        reg_source = #{record.regSource,jdbcType=TINYINT},
+      </if>
+      <if test="record.infoApply != null" >
+        info_apply = #{record.infoApply,jdbcType=CHAR},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDeleted != null" >
+        is_deleted = #{record.isDeleted,jdbcType=CHAR},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.rootUserId != null" >
+        root_user_id = #{record.rootUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginPwd != null" >
+        login_pwd = #{record.loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPwd != null" >
+        pay_pwd = #{record.payPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginNum != null" >
+        login_num = #{record.loginNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginFailedTimes != null" >
+        login_failed_times = #{record.loginFailedTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.userRoles != null" >
+        user_roles = #{record.userRoles,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyCn != null" >
+        company_cn = #{record.companyCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyCnShort != null" >
+        company_cn_short = #{record.companyCnShort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyEn != null" >
+        company_en = #{record.companyEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyCode != null" >
+        company_code = #{record.companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundAccount != null" >
+        fund_account = #{record.fundAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyType != null" >
+        company_type = #{record.companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCode != null" >
+        org_code = #{record.orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxCert != null" >
+        tax_cert = #{record.taxCert,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessCert != null" >
+        business_cert = #{record.businessCert,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizPermitCert != null" >
+        biz_permit_cert = #{record.bizPermitCert,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regDate != null" >
+        reg_date = #{record.regDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPerson != null" >
+        legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agencyPerson != null" >
+        agency_person = #{record.agencyPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regCapital != null" >
+        reg_capital = #{record.regCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleBank != null" >
+        settle_bank = #{record.settleBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openBank != null" >
+        open_bank = #{record.openBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccount != null" >
+        bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccountName != null" >
+        bank_account_name = #{record.bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fax != null" >
+        fax = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.website != null" >
+        website = #{record.website,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compZipCode != null" >
+        comp_zip_code = #{record.compZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compCountryCode != null" >
+        comp_country_code = #{record.compCountryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compProvinceCode != null" >
+        comp_province_code = #{record.compProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compCityCode != null" >
+        comp_city_code = #{record.compCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compDistrictCode != null" >
+        comp_district_code = #{record.compDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compAddr != null" >
+        comp_addr = #{record.compAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compRemark != null" >
+        comp_remark = #{record.compRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCode != null" >
+        user_code = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ukeyStr != null" >
+        ukey_str = #{record.ukeyStr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ukeyName != null" >
+        ukey_name = #{record.ukeyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.job != null" >
+        job = #{record.job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobNo != null" >
+        job_no = #{record.jobNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.im != null" >
+        im = #{record.im,jdbcType=VARCHAR},
+      </if>
+      <if test="record.officePhone != null" >
+        office_phone = #{record.officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homePhone != null" >
+        home_phone = #{record.homePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptName != null" >
+        dept_name = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipCode != null" >
+        zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workYear != null" >
+        work_year = #{record.workYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryCode != null" >
+        country_code = #{record.countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.districtCode != null" >
+        district_code = #{record.districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idType != null" >
+        id_type = #{record.idType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNo != null" >
+        id_no = #{record.idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=CHAR},
+      </if>
+      <if test="record.isActive != null" >
+        is_active = #{record.isActive,jdbcType=CHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uExt1 != null" >
+        u_ext1 = #{record.uExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uExt2 != null" >
+        u_ext2 = #{record.uExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uExt3 != null" >
+        u_ext3 = #{record.uExt3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ciExt1 != null" >
+        ci_ext1 = #{record.ciExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ciExt2 != null" >
+        ci_ext2 = #{record.ciExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ciExt3 != null" >
+        ci_ext3 = #{record.ciExt3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ciExt4 != null" >
+        ci_ext4 = #{record.ciExt4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ciExt5 != null" >
+        ci_ext5 = #{record.ciExt5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uiExt1 != null" >
+        ui_ext1 = #{record.uiExt1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uiExt2 != null" >
+        ui_ext2 = #{record.uiExt2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uiExt3 != null" >
+        ui_ext3 = #{record.uiExt3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uiExt4 != null" >
+        ui_ext4 = #{record.uiExt4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uiExt5 != null" >
+        ui_ext5 = #{record.uiExt5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModify != null" >
+        gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.exchangeId != null" >
+        exchange_id = #{record.exchangeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update uc_users_full
+    set id = #{record.id,jdbcType=INTEGER},
+      form_id = #{record.formId,jdbcType=INTEGER},
+      query_attr = #{record.queryAttr,jdbcType=VARCHAR},
+      list_attr = #{record.listAttr,jdbcType=VARCHAR},
+      login_attr = #{record.loginAttr,jdbcType=VARCHAR},
+      interface_query_attr = #{record.interfaceQueryAttr,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      audit_remark = #{record.auditRemark,jdbcType=VARCHAR},
+      gmt_audit = #{record.gmtAudit,jdbcType=TIMESTAMP},
+      last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      reg_source = #{record.regSource,jdbcType=TINYINT},
+      info_apply = #{record.infoApply,jdbcType=CHAR},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      is_deleted = #{record.isDeleted,jdbcType=CHAR},
+      creator_id = #{record.creatorId,jdbcType=INTEGER},
+      root_user_id = #{record.rootUserId,jdbcType=INTEGER},
+      account = #{record.account,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      login_pwd = #{record.loginPwd,jdbcType=VARCHAR},
+      pay_pwd = #{record.payPwd,jdbcType=VARCHAR},
+      login_num = #{record.loginNum,jdbcType=INTEGER},
+      login_failed_times = #{record.loginFailedTimes,jdbcType=INTEGER},
+      user_roles = #{record.userRoles,jdbcType=INTEGER},
+      company_cn = #{record.companyCn,jdbcType=VARCHAR},
+      company_cn_short = #{record.companyCnShort,jdbcType=VARCHAR},
+      company_en = #{record.companyEn,jdbcType=VARCHAR},
+      company_code = #{record.companyCode,jdbcType=VARCHAR},
+      fund_account = #{record.fundAccount,jdbcType=VARCHAR},
+      company_type = #{record.companyType,jdbcType=VARCHAR},
+      org_code = #{record.orgCode,jdbcType=VARCHAR},
+      tax_cert = #{record.taxCert,jdbcType=VARCHAR},
+      business_cert = #{record.businessCert,jdbcType=VARCHAR},
+      biz_permit_cert = #{record.bizPermitCert,jdbcType=VARCHAR},
+      reg_date = #{record.regDate,jdbcType=VARCHAR},
+      legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      agency_person = #{record.agencyPerson,jdbcType=VARCHAR},
+      reg_capital = #{record.regCapital,jdbcType=VARCHAR},
+      settle_bank = #{record.settleBank,jdbcType=VARCHAR},
+      open_bank = #{record.openBank,jdbcType=VARCHAR},
+      bank_account = #{record.bankAccount,jdbcType=VARCHAR},
+      bank_account_name = #{record.bankAccountName,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      fax = #{record.fax,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      website = #{record.website,jdbcType=VARCHAR},
+      comp_zip_code = #{record.compZipCode,jdbcType=VARCHAR},
+      comp_country_code = #{record.compCountryCode,jdbcType=VARCHAR},
+      comp_province_code = #{record.compProvinceCode,jdbcType=VARCHAR},
+      comp_city_code = #{record.compCityCode,jdbcType=VARCHAR},
+      comp_district_code = #{record.compDistrictCode,jdbcType=VARCHAR},
+      comp_addr = #{record.compAddr,jdbcType=VARCHAR},
+      comp_remark = #{record.compRemark,jdbcType=VARCHAR},
+      user_code = #{record.userCode,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      ukey_str = #{record.ukeyStr,jdbcType=VARCHAR},
+      ukey_name = #{record.ukeyName,jdbcType=VARCHAR},
+      job = #{record.job,jdbcType=VARCHAR},
+      job_no = #{record.jobNo,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      im = #{record.im,jdbcType=VARCHAR},
+      office_phone = #{record.officePhone,jdbcType=VARCHAR},
+      home_phone = #{record.homePhone,jdbcType=VARCHAR},
+      dept_name = #{record.deptName,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      work_year = #{record.workYear,jdbcType=VARCHAR},
+      country_code = #{record.countryCode,jdbcType=VARCHAR},
+      province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      district_code = #{record.districtCode,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      id_type = #{record.idType,jdbcType=VARCHAR},
+      id_no = #{record.idNo,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      degree = #{record.degree,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=CHAR},
+      is_active = #{record.isActive,jdbcType=CHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      u_ext1 = #{record.uExt1,jdbcType=VARCHAR},
+      u_ext2 = #{record.uExt2,jdbcType=VARCHAR},
+      u_ext3 = #{record.uExt3,jdbcType=VARCHAR},
+      ci_ext1 = #{record.ciExt1,jdbcType=VARCHAR},
+      ci_ext2 = #{record.ciExt2,jdbcType=VARCHAR},
+      ci_ext3 = #{record.ciExt3,jdbcType=VARCHAR},
+      ci_ext4 = #{record.ciExt4,jdbcType=VARCHAR},
+      ci_ext5 = #{record.ciExt5,jdbcType=VARCHAR},
+      ui_ext1 = #{record.uiExt1,jdbcType=VARCHAR},
+      ui_ext2 = #{record.uiExt2,jdbcType=VARCHAR},
+      ui_ext3 = #{record.uiExt3,jdbcType=VARCHAR},
+      ui_ext4 = #{record.uiExt4,jdbcType=VARCHAR},
+      ui_ext5 = #{record.uiExt5,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
+      exchange_id = #{record.exchangeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <select id="getAccountByMobile" parameterType="string" resultType="string">
+    SELECT  u.account FROM uc_users_full u LEFT JOIN uc_form f on u.form_id=f.ID WHERE f.FORM_CODE = 'REG_FORM' and u.mobile = #{mobile}
+  </select>
+
+  <select id="getAccountByRealName" resultType="map" parameterType="string">
+    SELECT
+	u.company_code AS account,
+	u.company_cn AS uname,
+	'f' AS type,
+	t1.attr_value as headImg
+FROM
+	uc_users_full u
+LEFT JOIN (SELECT * FROM uc_form_attr_values av WHERE av.ATTR_KEY = 'headImg') t1 on u.id=t1.OBJECT_ID
+WHERE
+	u.mobile LIKE concat('%', #{name}, '%')
+OR u.company_cn = #{name}
+OR u.id = (
+	SELECT
+		MAX(object_id)
+	FROM
+		uc_form_attr_values
+	WHERE
+		attr_key = 'flowerName'
+	AND attr_value LIKE concat('%', #{name}, '%')
+)
+  </select>
+
+  <select id="getIMUserFormByRealName" resultType="com.space.common.dto.star.IMUserForm" parameterType="string">
+    SELECT
+	u.account AS account,
+	u.company_cn AS uname,
+   u.mobile as mobile,
+	'f' AS type,
+	t1.attr_value as headImg,
+   t2.attr_value as flowerName
+	FROM
+	uc_users_full u
+	LEFT JOIN (SELECT * FROM uc_form_attr_values WHERE ATTR_KEY = 'headImg' ORDER BY id desc limit 1) t1 on u.id=t1.OBJECT_ID
+    LEFT JOIN (SELECT * FROM uc_form_attr_values WHERE ATTR_KEY = 'flowerName' ) t2 on u.id=t2.OBJECT_ID
+	WHERE
+	u.mobile = #{name}
+	OR u.company_cn = #{name}
+	OR u.id = (
+	SELECT
+	MAX(object_id)
+	FROM
+	uc_form_attr_values
+	WHERE
+	attr_key = 'flowerName'
+	AND attr_value = #{name} )
+  </select>
+
+  <select id="isRegist" parameterType="string" resultType="string" >
+    SELECT DISTINCT(av.id) FROM uc_users_full u LEFT JOIN uc_form_attr_values av on u.id = av.OBJECT_ID  WHERE av.ATTR_KEY = 'token' and u.account = #{account}
+  </select>
+
+  <select id="getInvitedUsers" parameterType="string" resultType="map">
+    SELECT  mobile,name,account FROM  uc_users_full WHERE ui_ext5 = #{mobile}
+  </select>
+</mapper>
+
+

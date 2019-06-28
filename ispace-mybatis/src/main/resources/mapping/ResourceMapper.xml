@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.space.mybatis.dao.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Resource">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="answer_id" jdbcType="INTEGER" property="answerId" />
+    <result column="wide"  jdbcType="FLOAT" property="wide" />
+    <result column="high"  jdbcType="FLOAT" property="high" />
+  </resultMap>
+  
+  <resultMap id="ResourceResDtoMap" type="com.space.common.dto.dis.answer.resource.ResourceResDto">
+    <result column="resource_id" jdbcType="INTEGER" property="resourceId" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="wide"  jdbcType="FLOAT" property="wide" />
+    <result column="high"  jdbcType="FLOAT" property="high" />
+  </resultMap>
+  
+  <select id="getByAnswerId" resultMap="ResourceResDtoMap">
+  	SELECT id as resource_id, path, type, wide, high
+	FROM resource
+	WHERE answer_id = #{answerId}
+	ORDER BY sort 
+  </select>
+  
+</mapper>

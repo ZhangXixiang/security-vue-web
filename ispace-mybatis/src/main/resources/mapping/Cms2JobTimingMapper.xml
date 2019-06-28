@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.space.mybatis.dao.Cms2JobTimingMapper" >
+  <resultMap id="BaseResultMap" type="com.space.mybatis.model.Cms2JobTiming" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SITE_ID" property="siteId" jdbcType="BIGINT" />
+    <result column="OBJ_TYPE" property="objType" jdbcType="BIGINT" />
+    <result column="OBJ_ID" property="objId" jdbcType="BIGINT" />
+    <result column="EXE_TIME" property="exeTime" jdbcType="TIMESTAMP" />
+    <result column="OBJ_OPER" property="objOper" jdbcType="BIGINT" />
+    <result column="ERROR" property="error" jdbcType="BIGINT" />
+    <result column="LOG" property="log" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SITE_ID, OBJ_TYPE, OBJ_ID, EXE_TIME, OBJ_OPER, ERROR, LOG, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.space.mybatis.model.Cms2JobTimingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cms2_job_timing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.space.mybatis.model.Cms2JobTimingExample" >
+    delete from cms2_job_timing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.space.mybatis.model.Cms2JobTiming" >
+    insert into cms2_job_timing (ID, SITE_ID, OBJ_TYPE, 
+      OBJ_ID, EXE_TIME, OBJ_OPER, 
+      ERROR, LOG, CREATE_TIME, 
+      MODIFY_TIME)
+    values (#{id,jdbcType=BIGINT}, #{siteId,jdbcType=BIGINT}, #{objType,jdbcType=BIGINT}, 
+      #{objId,jdbcType=BIGINT}, #{exeTime,jdbcType=TIMESTAMP}, #{objOper,jdbcType=BIGINT}, 
+      #{error,jdbcType=BIGINT}, #{log,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.space.mybatis.model.Cms2JobTiming" >
+    insert into cms2_job_timing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="objType != null" >
+        OBJ_TYPE,
+      </if>
+      <if test="objId != null" >
+        OBJ_ID,
+      </if>
+      <if test="exeTime != null" >
+        EXE_TIME,
+      </if>
+      <if test="objOper != null" >
+        OBJ_OPER,
+      </if>
+      <if test="error != null" >
+        ERROR,
+      </if>
+      <if test="log != null" >
+        LOG,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=BIGINT},
+      </if>
+      <if test="objType != null" >
+        #{objType,jdbcType=BIGINT},
+      </if>
+      <if test="objId != null" >
+        #{objId,jdbcType=BIGINT},
+      </if>
+      <if test="exeTime != null" >
+        #{exeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objOper != null" >
+        #{objOper,jdbcType=BIGINT},
+      </if>
+      <if test="error != null" >
+        #{error,jdbcType=BIGINT},
+      </if>
+      <if test="log != null" >
+        #{log,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.space.mybatis.model.Cms2JobTimingExample" resultType="java.lang.Integer" >
+    select count(*) from cms2_job_timing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cms2_job_timing
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=BIGINT},
+      </if>
+      <if test="record.objType != null" >
+        OBJ_TYPE = #{record.objType,jdbcType=BIGINT},
+      </if>
+      <if test="record.objId != null" >
+        OBJ_ID = #{record.objId,jdbcType=BIGINT},
+      </if>
+      <if test="record.exeTime != null" >
+        EXE_TIME = #{record.exeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.objOper != null" >
+        OBJ_OPER = #{record.objOper,jdbcType=BIGINT},
+      </if>
+      <if test="record.error != null" >
+        ERROR = #{record.error,jdbcType=BIGINT},
+      </if>
+      <if test="record.log != null" >
+        LOG = #{record.log,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cms2_job_timing
+    set ID = #{record.id,jdbcType=BIGINT},
+      SITE_ID = #{record.siteId,jdbcType=BIGINT},
+      OBJ_TYPE = #{record.objType,jdbcType=BIGINT},
+      OBJ_ID = #{record.objId,jdbcType=BIGINT},
+      EXE_TIME = #{record.exeTime,jdbcType=TIMESTAMP},
+      OBJ_OPER = #{record.objOper,jdbcType=BIGINT},
+      ERROR = #{record.error,jdbcType=BIGINT},
+      LOG = #{record.log,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
