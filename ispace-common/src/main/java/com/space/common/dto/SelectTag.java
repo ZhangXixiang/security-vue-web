@@ -1,12 +1,13 @@
 package com.space.common.dto;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.validation.constraints.NotNull;
-import org.springframework.stereotype.Component;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Data

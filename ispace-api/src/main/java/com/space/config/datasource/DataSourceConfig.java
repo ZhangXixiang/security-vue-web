@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-//import org.mybatis.spring.annotation.MapperScan;
 
 @Configuration
 @MapperScan(basePackages = "com.space.mybatis.dao", sqlSessionFactoryRef = "SqlSessionFactory")

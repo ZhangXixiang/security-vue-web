@@ -1,14 +1,13 @@
 package com.space.mybatis.model;
 
-import java.io.Serializable;
-import java.util.Date;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import lombok.Data;
+import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Table(name = "article_rel_user")

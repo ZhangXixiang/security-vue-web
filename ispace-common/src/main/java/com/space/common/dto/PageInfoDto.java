@@ -1,11 +1,12 @@
 package com.space.common.dto;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
 import com.github.pagehelper.Page;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 @ApiModel(value = "PageInfoDto", description = "分页对象")
 public class PageInfoDto<T> implements Serializable {

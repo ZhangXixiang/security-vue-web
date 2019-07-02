@@ -45,7 +45,7 @@ public class AnswerServiceImpl extends BaseServiceImpl<Answer, Integer> implemen
 		if(searchDto.getOrderTag() != null && !searchDto.getOrderTag().trim().equals("")){
 			PageHelper.orderBy(" art." + searchDto.getOrderTag() + " " + searchDto.getOrderType());
 		}
-		List<AnswerResDto> dtos = answerMapper.getAnswers(searchDto.getTopicId(), 
+		List<AnswerResDto> dtos = answerMapper.getAnswers(searchDto.getTopicId(),
 				                                          searchDto.getOrderTag(), 
 				                                          searchDto.getOrderType(), 
 				                                          searchDto.getSearch(), 
@@ -176,7 +176,7 @@ public class AnswerServiceImpl extends BaseServiceImpl<Answer, Integer> implemen
 
 
 	@Override
-	public List<AnswerListResDTO> listAnswer(Integer page,Integer pageSize) {
+	public List<AnswerListResDTO> listAnswer(Integer page, Integer pageSize) {
 		int start = (page - 1) * pageSize;
 		return answerMapper.listAnswer(start,pageSize);
 	}

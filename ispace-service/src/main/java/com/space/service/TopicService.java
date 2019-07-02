@@ -12,7 +12,7 @@ public interface TopicService extends BaseService<Topic, Integer> {
 
 
 	//关联follow表和topic表查询 话题关注人列表
-	public List<FollowResDTO> selectAllFollow(Integer page,Integer pageSize);
+	public List<FollowResDTO> selectAllFollow(Integer page, Integer pageSize);
 
 
 	List<Topic> listTopic(Integer page, Integer pageSize);

@@ -49,7 +49,7 @@ public class TopicServiceImpl extends BaseServiceImpl<Topic, Integer> implements
 	}
 
 	@Override
-	public List<FollowResDTO> selectAllFollow(Integer page,Integer pageSize) {
+	public List<FollowResDTO> selectAllFollow(Integer page, Integer pageSize) {
 		int start = (page - 1) * pageSize;
 		return topicMapper.selectAllFollow(start,pageSize);
 	}

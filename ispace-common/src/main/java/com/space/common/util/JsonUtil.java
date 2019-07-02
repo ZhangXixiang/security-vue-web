@@ -1,7 +1,5 @@
 package com.space.common.util;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -9,6 +7,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 public abstract class JsonUtil {
 	

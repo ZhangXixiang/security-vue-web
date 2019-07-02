@@ -11,13 +11,13 @@ import java.util.List;
 public interface AnswerMapper extends Mapper<Answer> {
     
 	public List<AnswerResDto> getAnswers(@Param("topicId") Integer topicId,
-										 @Param("orderTag") String orderTag,
-										 @Param("orderType") String orderType,
-										 @Param("search") String search,
-										 @Param("answerId") Integer answerId,
-										 @Param("userId") String userId);
+                                         @Param("orderTag") String orderTag,
+                                         @Param("orderType") String orderType,
+                                         @Param("search") String search,
+                                         @Param("answerId") Integer answerId,
+                                         @Param("userId") String userId);
 
-	List<AnswerListResDTO> listAnswer(@Param("start") int start,@Param("size") int size);
+	List<AnswerListResDTO> listAnswer(@Param("start") int start, @Param("size") int size);
 
 	int countForAll();
 }
