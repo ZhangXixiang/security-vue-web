@@ -17,8 +17,8 @@ public interface CommentMapper extends Mapper<Comment> {
 	public List<CommentResDto> obtain(@Param("userId") String userId);
 
 
-	List<CommentListResDTO> listComment(@Param("start") int start, @Param("size") int size);
+	List<CommentListResDTO> listComment(@Param("start") int start, @Param("size") int size, @Param("name") String name, @Param("topic") String topic, @Param("answer") String answer);
 
-	int countForAll();
+	int countForAll(@Param("name") String name, @Param("topic") String topic, @Param("answer") String answer);
 	
 }

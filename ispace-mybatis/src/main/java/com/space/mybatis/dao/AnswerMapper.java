@@ -17,7 +17,7 @@ public interface AnswerMapper extends Mapper<Answer> {
                                          @Param("answerId") Integer answerId,
                                          @Param("userId") String userId);
 
-	List<AnswerListResDTO> listAnswer(@Param("start") int start, @Param("size") int size);
+	List<AnswerListResDTO> listAnswer(@Param("start") int start, @Param("size") int size, @Param("name") String name, @Param("topic") String topic);
 
-	int countForAll();
+	int countForAll(@Param("name") String name, @Param("topic") String topic);
 }

@@ -105,15 +105,15 @@ public class CommentServiceImpl extends BaseServiceImpl<Comment, Integer> implem
 	}
 
 	@Override
-	public List<CommentListResDTO> selectAllComment(Integer page, Integer pageSize) {
+	public List<CommentListResDTO> selectAllComment(Integer page, Integer pageSize, String name,String topic,String answer) {
 		int start = (page - 1) * pageSize;
-		return commentMapper.listComment(start,pageSize);
+		return commentMapper.listComment(start,pageSize,name,topic,answer);
 	}
 
 
 	@Override
-	public int countForAll() {
-		return commentMapper.countForAll();
+	public int countForAll(String name,String topic,String answer) {
+		return commentMapper.countForAll(name,topic,answer);
 	}
 
 }

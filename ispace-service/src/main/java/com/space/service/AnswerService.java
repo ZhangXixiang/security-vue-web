@@ -20,7 +20,7 @@ public interface AnswerService extends BaseService<Answer, Integer> {
 	
 	public AnswerResDto getByIdOver(Integer answerId, String userId);
 
-	List<AnswerListResDTO> listAnswer(Integer page, Integer pageSize);
+	List<AnswerListResDTO> listAnswer(Integer page, Integer pageSize,String name,String topic);
 
-	int countForAll();
+	int countForAll(String name,String topic);
 }

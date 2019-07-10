@@ -17,8 +17,8 @@ public interface CommentService extends BaseService<Comment, Integer> {
 	public PageInfoDto<CommentResDto> obtain(CommentReqUserDto reqUserDto);
 
 	//关联follow表和topic表查询 话题关注人列表
-	public List<CommentListResDTO> selectAllComment(Integer page, Integer pageSize);
+	public List<CommentListResDTO> selectAllComment(Integer page, Integer pageSize, String name,String topic,String answer);
 
-	int countForAll();
+	int countForAll(String name,String topic,String answer);
 
 }

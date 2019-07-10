@@ -176,14 +176,14 @@ public class AnswerServiceImpl extends BaseServiceImpl<Answer, Integer> implemen
 
 
 	@Override
-	public List<AnswerListResDTO> listAnswer(Integer page, Integer pageSize) {
+	public List<AnswerListResDTO> listAnswer(Integer page, Integer pageSize,String name,String topic) {
 		int start = (page - 1) * pageSize;
-		return answerMapper.listAnswer(start,pageSize);
+		return answerMapper.listAnswer(start,pageSize,name,topic);
 	}
 
 	@Override
-	public int countForAll() {
-		return answerMapper.countForAll();
+	public int countForAll(String name,String topic) {
+		return answerMapper.countForAll(name,topic);
 	}
 }
 

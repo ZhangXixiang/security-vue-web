@@ -70,17 +70,47 @@
 	LEFT JOIN `answer` on `comment`.answer_id = `answer`.id
 	LEFT JOIN `topic` on `answer`.topic_id = `topic`.id
 	where `answer`.is_deleted = 0 and `topic`.is_deleted = 0
+		<if test="name != null">
+			AND (
+			`comment`.content LIKE concat(concat('%', #{name}), '%')
+			)
+		</if>
+		<if test="topic != null">
+			AND (
+			`topic`.name LIKE concat(concat('%', #{topic}), '%')
+			)
+		</if>
+		<if test="answer != null">
+			AND (
+			`comment`.answer_title LIKE concat(concat('%', #{answer}), '%')
+			)
+		</if>
 	ORDER BY `comment`.create_time DESC
         limit #{start},#{size}
     </select>
 
-    <select id="countForAll" parameterType="com.space.mybatis.model.Answer" resultType="java.lang.Integer" >
+    <select id="countForAll" resultType="java.lang.Integer" >
 		SELECT count(1)
 	FROM `comment`
 	LEFT JOIN `user` on `user`.id = `comment`.user_id
 	LEFT JOIN `answer` on `comment`.answer_id = `answer`.id
 	LEFT JOIN `topic` on `answer`.topic_id = `topic`.id
 	where `answer`.is_deleted = 0 and `topic`.is_deleted = 0
+		<if test="name != null">
+			AND (
+			`comment`.content LIKE concat(concat('%', #{name}), '%')
+			)
+		</if>
+		<if test="topic != null">
+			AND (
+			`topic`.name LIKE concat(concat('%', #{topic}), '%')
+			)
+		</if>
+		<if test="answer != null">
+			AND (
+			`comment`.answer_title LIKE concat(concat('%', #{answer}), '%')
+			)
+		</if>
 	</select>
 </mapper>
 

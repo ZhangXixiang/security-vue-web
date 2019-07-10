@@ -62,21 +62,36 @@
 <!--	<if test="topicId != null and topicId != 0">-->
 <!--		AND topic.id = #{topicId}-->
 <!--	</if>-->
-<!--	<if test="search != null">-->
-<!--		AND (-->
-<!--			art.title LIKE concat(concat('%', #{search}), '%')-->
-<!--		)-->
-<!--	</if>-->
+	  <if test="name != null">
+		  AND (
+		  art.title LIKE concat(concat('%', #{name}), '%')
+		  )
+	  </if>
+	  <if test="topic != null">
+		  AND (
+		  topic.name LIKE concat(concat('%', #{topic}), '%')
+		  )
+	  </if>
 	  limit #{start},#{size}
   </select>
 
 
-	<select id="countForAll" parameterType="com.space.mybatis.model.Answer" resultType="java.lang.Integer" >
+	<select id="countForAll" resultType="java.lang.Integer" >
 		SELECT count(1)
 	FROM answer art
 	LEFT JOIN topic topic on topic.id = art.topic_id
 	LEFT JOIN `user` on `user`.id = art.user_id
 	WHERE topic.is_deleted = 0
+		<if test="name != null">
+			AND (
+			art.title LIKE concat(concat('%', #{name}), '%')
+			)
+		</if>
+		<if test="topic != null">
+			AND (
+			topic.name LIKE concat(concat('%', #{topic}), '%')
+			)
+		</if>
 	</select>
 
 

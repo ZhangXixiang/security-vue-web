@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +53,7 @@ public class SalaryController {
     @RequestMapping(value = "/salary", method = RequestMethod.POST)
     public RespBean addSalaryCfg(Topic salary) {
         logger.info("开始新增话题");
-                salary.setIcon("");
+//                salary.setIcon("");
                 salary.setCreateTime(new Date());
                 salary.setUT(new Date());
                 salary.setCommentCount(0);
@@ -132,10 +133,10 @@ public class SalaryController {
      * @return
      */
     @RequestMapping(value = "/answer", method = RequestMethod.GET)
-    public Map<String, Object> answerByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public Map<String, Object> answerByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam String name,@RequestParam String topic) {
         Map<String, Object> map = new HashMap<>();
-        List<AnswerListResDTO> employeeByPage = answerService.listAnswer(page, size);
-        Integer count = answerService.countForAll();
+        List<AnswerListResDTO> employeeByPage = answerService.listAnswer(page, size,name,topic);
+        Integer count = answerService.countForAll(name,topic);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;
@@ -191,10 +192,10 @@ public class SalaryController {
      * @return
      */
      @RequestMapping(value = "/comment", method = RequestMethod.GET)
-     public Map<String, Object> comment(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+     public Map<String, Object> comment(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @RequestParam String name, @RequestParam String topic, @RequestParam String answer) {
          Map<String, Object> map = new HashMap<>();
-         List<CommentListResDTO> employeeByPage = commentService.selectAllComment(page, size);
-         Integer count = commentService.countForAll();
+         List<CommentListResDTO> employeeByPage = commentService.selectAllComment(page, size, name,topic,answer);
+         Integer count = commentService.countForAll(name,topic,answer);
          map.put("emps", employeeByPage);
          map.put("count", count);
          return map;
