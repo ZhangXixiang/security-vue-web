@@ -25,6 +25,8 @@ public class SystemBasicController {
     @Autowired
     MenuRoleService menuRoleService;
     @Autowired
+    DepartmentService departmentService;
+    @Autowired
     PositionService positionService;
     @Autowired
     JobLevelService jobLevelService;
@@ -68,6 +70,36 @@ public class SystemBasicController {
         return roleService.roles();
     }
 
+    @RequestMapping(value = "/dep", method = RequestMethod.POST)
+    public Map<String, Object> addDep(Department department) {
+        Map<String, Object> map = new HashMap<>();
+        if (departmentService.addDep(department) == 1) {
+            map.put("status", "success");
+            map.put("msg", department);
+            return map;
+        }
+        map.put("status", "error");
+        map.put("msg", "添加失败!");
+        return map;
+    }
+
+    @RequestMapping(value = "/dep/{did}", method = RequestMethod.DELETE)
+    public RespBean deleteDep(@PathVariable Long did) {
+        if (departmentService.deleteDep(did) == 1) {
+            return RespBean.ok("删除成功!");
+        }
+        return RespBean.error("删除失败!");
+    }
+
+    @RequestMapping(value = "/dep/{pid}", method = RequestMethod.GET)
+    public List<Department> getDepByPid(@PathVariable Long pid) {
+        return departmentService.getDepByPid(pid);
+    }
+
+    @RequestMapping(value = "/deps", method = RequestMethod.GET)
+    public List<Department> getAllDeps() {
+        return departmentService.getAllDeps();
+    }
 
     @RequestMapping(value = "/position", method = RequestMethod.POST)
     public RespBean addPos(Position pos) {
