@@ -34,6 +34,8 @@ public class UploadController implements ServletContextAware {
     private String fileSavePathPrefix;
     @Value("${demo.fileUpload.fileSavePath}")
     private String fileSavePath;
+    @Value("${demo.fileUpload.fileSavePath1}")
+    private String fileSavePath1;
     @Value("${demo.fileUpload.fileMaxSize}")
     private String fileMaxSize;
     @Value("${demo.fileUpload.fileUrlPrefix}")
@@ -79,6 +81,50 @@ public class UploadController implements ServletContextAware {
                     resultMap.put( "group", localSavePath.substring(localSavePath.lastIndexOf("/") + 1));
                     // 文件访问的url
 //                    resultMap.put( "url", fileUrlPrefix  + "/" + localSavePath + "/" + result.getFileName());
+                    resultMap.put( "url", localSavePath + "/" + result.getFileName());
+
+                    return JSONObject.toJSONString(resultMap);
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    /**
+     * 上传文件
+     * 上传到项目的webapp
+     *
+     * @param multipartFile
+     * @return
+     */
+    @PostMapping(value = "/upload1")
+    @ResponseBody
+    public Object upload1(@RequestPart("file") MultipartFile multipartFile) {
+
+        try {
+            if (null != multipartFile) {
+                String localSavePath = fileSavePath1;
+
+                long size = multipartFile.getSize();
+                if (size > Long.valueOf(fileMaxSize)){
+                    return null;
+                }
+
+                UploadResult result = BaseFileUtil.writeFileToService(multipartFile, fileSavePathPrefix, localSavePath);
+
+                if (result.getIsSuccess()) {
+                    Map<String, Object> resultMap = new HashMap<>();
+
+                    resultMap.put("size", size);
+                    // 文件名
+                    resultMap.put( "originalName", multipartFile.getOriginalFilename());
+                    // 文件名
+                    resultMap.put( "fileName", result.getFileName());
+                    // 所属group
+                    resultMap.put( "group", localSavePath.substring(localSavePath.lastIndexOf("/") + 1));
+                    // 文件访问的url
                     resultMap.put( "url", localSavePath + "/" + result.getFileName());
 
                     return JSONObject.toJSONString(resultMap);

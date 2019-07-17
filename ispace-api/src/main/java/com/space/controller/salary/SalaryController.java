@@ -53,6 +53,7 @@ public class SalaryController {
     public RespBean addSalaryCfg(Topic salary) {
         logger.info("开始新增话题");
 //                salary.setIcon("");
+
                 salary.setCreateTime(new Date());
                 salary.setUT(new Date());
                 salary.setCommentCount(0);

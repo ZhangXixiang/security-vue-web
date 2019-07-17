@@ -27,6 +27,9 @@ public class Topic implements Serializable {
 	@Column(name = "icon")
     private String icon;
 
+	@Column(name = "icon_blue")
+    private String iconBlue;
+
 	@Column(name = "sort")
     private Integer sort;
 
